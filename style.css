@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
 
   height: 100%;
@@ -7,9 +7,217 @@ body {
   background-size: cover;
   background-image: radial-gradient(ellipse farthest-corner at center top, #23233f 0%, #000000 60%);
   background-position: top center;
+} */
+
+/* Fixes básicos para mobile */
+html,
+body {
+  height: 100%;
+  background-color: #000000;
+  overflow-x: hidden; /* Cambiado de overflow: hidden a overflow-x: hidden */
+  overflow-y: auto; /* Permitir scroll vertical */
+  background-size: cover;
+  background-image: radial-gradient(ellipse farthest-corner at center top, #23233f 0%, #000000 60%);
+  background-position: top center;
 }
 
-/* Navigation */
+/* Navigation - Estilos mejorados para mobile */
+.nav-links {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 1000; /* Z-index más alto para asegurar visibilidad */
+}
+
+.nav-btn {
+    padding: 12px 24px; /* Incrementado desde el diseño base */
+    background: rgba(0, 0, 0, 0.8); /* Fondo más sólido */
+    border: 1px solid #ff00ff;
+    color: #ff00ff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 1rem; /* Incrementado de 0.9rem */
+    font-family: "Orbitron", sans-serif;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    min-height: 44px; /* Tamaño mínimo recomendado para touch */
+    box-sizing: border-box;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 0, 255, 0.2);
+    color: #00ffff;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Navegación mobile */
+    .nav-links {
+        top: 20px;
+        left: 20px;
+        right: auto;
+    }
+    
+    .nav-btn {
+        padding: 16px 28px; /* Más grande en mobile */
+        font-size: 1.1rem; /* Texto más grande */
+        border-radius: 25px;
+        gap: 12px;
+        min-height: 50px;
+        font-weight: 600;
+        border-width: 2px;
+        /* Asegurar que se vea sobre todos los elementos */
+        position: relative;
+        z-index: 1001;
+    }
+    
+    .nav-btn i {
+        font-size: 1.2rem;
+    }
+
+    /* Ajustes para títulos en mobile */
+    h1 {
+        font-size: clamp(40px, 8vw, 60px) !important;
+        width: 90% !important;
+        left: 50% !important;
+        margin-left: -45% !important;
+        top: 50% !important;
+    }
+
+    h2 {
+        font-size: clamp(45px, 9vw, 65px) !important;
+        top: 60% !important;
+        margin-right: -4em !important;
+    }
+
+    /* Ajustar el triángulo logo */
+    .logo-triangle {
+        width: 300px !important;
+        height: 240px !important;
+        margin-left: -150px !important;
+        top: 45% !important;
+    }
+
+    /* Ajustar elementos del background retro */
+    #retrobg-sunWrap {
+        width: 60% !important;
+        margin-bottom: -10% !important;
+    }
+
+    #retrobg-sun {
+        box-shadow: 0 0 60px 45px var(--glow-color) !important;
+    }
+
+    /* Ajustar el skyline de la ciudad */
+    #retrobg-cityWrap {
+        width: 80% !important;
+    }
+
+    /* Grid lines más suave en mobile */
+    #retrobg-lines {
+        opacity: 0.7;
+    }
+
+    .retrobg-vline + .retrobg-vline {
+        margin-left: 30px !important;
+    }
+
+    .retrobg-hline + .retrobg-hline {
+        margin-top: 60px !important;
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .nav-links {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .nav-btn {
+        padding: 18px 32px;
+        font-size: 1.2rem;
+        min-height: 55px;
+        border-radius: 30px;
+    }
+    
+    .nav-btn i {
+        font-size: 1.3rem;
+    }
+
+    h1 {
+        font-size: clamp(35px, 10vw, 50px) !important;
+        top: 55% !important;
+    }
+
+    h2 {
+        font-size: clamp(40px, 11vw, 55px) !important;
+        top: 65% !important;
+    }
+
+    .logo-triangle {
+        width: 250px !important;
+        height: 200px !important;
+        margin-left: -125px !important;
+        top: 40% !important;
+    }
+}
+
+/* Ajustes para landscape en mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .nav-btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+        min-height: 40px;
+    }
+    
+    h1 {
+        top: 40% !important;
+        font-size: clamp(30px, 6vw, 45px) !important;
+    }
+    
+    h2 {
+        top: 50% !important;
+        font-size: clamp(35px, 7vw, 50px) !important;
+    }
+    
+    .logo-triangle {
+        top: 35% !important;
+        width: 200px !important;
+        height: 160px !important;
+        margin-left: -100px !important;
+    }
+}
+
+/* Asegurar que los elementos de fondo no interfieran con la navegación */
+#retrobg {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    color: #a3c;
+    background-color: #000;
+    z-index: 1; /* Mantener bajo para no interferir con navegación */
+}
+
+#retrobg * {
+    z-index: 2; /* Elementos del background en capa intermedia */
+}
+
+/* Wrapper con z-index apropiado */
+.wrapper {
+    position: relative;
+    z-index: 10; /* Por encima del background pero debajo de la navegación */
+}
+
+
+/* 
 .nav-links {
     position: fixed;
     top: 30px;
@@ -42,7 +250,6 @@ body {
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
         top: 20px;
@@ -50,17 +257,17 @@ body {
     }
     
     .nav-btn {
-        padding: 15px 25px; /* Incrementar padding para móviles */
-        font-size: 1.1rem; /* Aumentar tamaño de fuente */
-        border-radius: 25px; /* Botón más redondeado */
-        gap: 10px; /* Más espacio entre ícono y texto */
-        min-height: 50px; /* Altura mínima para mejor toque */
-        font-weight: 600; /* Texto más bold para mejor legibilidad */
-        border-width: 2px; /* Borde más grueso en móvil */
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        border-radius: 25px;
+        gap: 10px;
+        min-height: 50px;
+        font-weight: 600;
+        border-width: 2px;
     }
     
     .nav-btn i {
-        font-size: 1.2rem; /* Ícono más grande */
+        font-size: 1.2rem;
     }
 
     .app-showcase {
@@ -74,7 +281,6 @@ body {
     }
 }
 
-/* Para pantallas aún más pequeñas */
 @media (max-width: 480px) {
     .nav-links {
         top: 15px;
@@ -82,16 +288,16 @@ body {
     }
     
     .nav-btn {
-        padding: 18px 30px; /* Aún más padding para pantallas pequeñas */
-        font-size: 1.2rem; /* Fuente más grande */
-        min-height: 55px; /* Altura mínima mayor */
+        padding: 18px 30px;
+        font-size: 1.2rem;
+        min-height: 55px;
     }
     
     .nav-btn i {
-        font-size: 1.3rem; /* Ícono aún más grande */
+        font-size: 1.3rem;
     }
 }
-
+ */
 #retrobg {
   position: relative;
   overflow: hidden;
