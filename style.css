@@ -1,11 +1,11 @@
 html,
 body {
 
+  background-image: radial-gradient(ellipse farthest-corner at center top, #23233f 0%, #000000 60%);
 /*
   height: 100%;
   background-color: #000000;
   overflow: hidden;
-  background-image: radial-gradient(ellipse farthest-corner at center top, #23233f 0%, #000000 60%);
   background-size: cover;
   background-position: top center;
    */
@@ -47,6 +47,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+        .nav-links {
+            top: 20px;
+            left: 20px;
+        }
     /* .nav-links {
         top: 20px;
         right: 20px;
