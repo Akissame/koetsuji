@@ -14,8 +14,7 @@ html,
 body {
   height: 100%;
   background-color: #000000;
-  overflow-x: hidden; /* Cambiado de overflow: hidden a overflow-x: hidden */
-  overflow-y: auto; /* Permitir scroll vertical */
+  overflow: hidden;
   background-size: cover;
   background-image: radial-gradient(ellipse farthest-corner at center top, #23233f 0%, #000000 60%);
   background-position: top center;
