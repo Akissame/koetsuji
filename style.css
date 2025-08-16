@@ -10,47 +10,58 @@ body {
 }
 
 /* Navigation */
-    .nav-links {
-        position: fixed;
-        top: 30px;
-        left: 30px;
-        z-index: 100;
-    }
-  
-    .nav-btn {
-        padding: 10px 20px;
-        background: rgba(0, 0, 0, 0.7);
-        border: 1px solid #ff00ff;
-        color: #ff00ff;
-        text-decoration: none;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-  
-    .nav-btn:hover {
-        background: rgba(255, 0, 255, 0.2);
-        color: #00ffff;
-        border-color: #00ffff;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-    }
+.nav-links {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 100;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #ff00ff;
+    color: #ff00ff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Orbitron", sans-serif;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 0, 255, 0.2);
+    color: #00ffff;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
-        .nav-links {
-            top: 20px;
-            left: 20px;
-        }
-    /* .nav-links {
+    .nav-links {
         top: 20px;
-        right: 20px;
-        flex-direction: column;
-        gap: 10px;
-    } */
+        left: 20px;
+    }
+    
+    .nav-btn {
+        padding: 15px 25px; /* Incrementar padding para móviles */
+        font-size: 1.1rem; /* Aumentar tamaño de fuente */
+        border-radius: 25px; /* Botón más redondeado */
+        gap: 10px; /* Más espacio entre ícono y texto */
+        min-height: 50px; /* Altura mínima para mejor toque */
+        font-weight: 600; /* Texto más bold para mejor legibilidad */
+        border-width: 2px; /* Borde más grueso en móvil */
+    }
+    
+    .nav-btn i {
+        font-size: 1.2rem; /* Ícono más grande */
+    }
 
     .app-showcase {
         grid-template-columns: 1fr;
@@ -60,6 +71,24 @@ body {
     .sun {
         width: 200px;
         height: 200px;
+    }
+}
+
+/* Para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+    .nav-links {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .nav-btn {
+        padding: 18px 30px; /* Aún más padding para pantallas pequeñas */
+        font-size: 1.2rem; /* Fuente más grande */
+        min-height: 55px; /* Altura mínima mayor */
+    }
+    
+    .nav-btn i {
+        font-size: 1.3rem; /* Ícono aún más grande */
     }
 }
 
