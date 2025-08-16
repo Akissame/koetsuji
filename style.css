@@ -195,25 +195,6 @@ body {
     }
 }
 
-/* Asegurar que los elementos de fondo no interfieran con la navegación */
-#retrobg {
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-    color: #a3c;
-    background-color: #000;
-    z-index: 1; /* Mantener bajo para no interferir con navegación */
-}
-
-#retrobg * {
-    z-index: 2; /* Elementos del background en capa intermedia */
-}
-
-/* Wrapper con z-index apropiado */
-.wrapper {
-    position: relative;
-    z-index: 10; /* Por encima del background pero debajo de la navegación */
-}
 
 
 /* 
