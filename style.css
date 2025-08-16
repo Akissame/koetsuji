@@ -96,13 +96,7 @@ body {
         margin-right: -4em !important;
     }
 
-    /* Ajustar el triángulo logo */
-    .logo-triangle {
-        width: 300px !important;
-        height: 240px !important;
-        margin-left: -150px !important;
-        top: 45% !important;
-    }
+    
 
     /* Ajustar elementos del background retro */
     #retrobg-sunWrap {
@@ -160,13 +154,6 @@ body {
         font-size: clamp(40px, 11vw, 55px) !important;
         top: 65% !important;
     }
-
-    .logo-triangle {
-        width: 250px !important;
-        height: 200px !important;
-        margin-left: -125px !important;
-        top: 40% !important;
-    }
 }
 
 /* Ajustes para landscape en mobile */
@@ -185,13 +172,6 @@ body {
     h2 {
         top: 50% !important;
         font-size: clamp(35px, 7vw, 50px) !important;
-    }
-    
-    .logo-triangle {
-        top: 35% !important;
-        width: 200px !important;
-        height: 160px !important;
-        margin-left: -100px !important;
     }
 }
 
