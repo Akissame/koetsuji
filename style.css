@@ -39,12 +39,12 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-links {
+    /* .nav-links {
         top: 20px;
         right: 20px;
         flex-direction: column;
         gap: 10px;
-    }
+    } */
 
     .app-showcase {
         grid-template-columns: 1fr;
