@@ -526,7 +526,7 @@ h2 {
   color: #d100b1;
   display: block;
   font-family: "Yellowtail", cursive;
-  font-size: 90px;
+  font-size: 70px;
   margin-right: -8em;
   position: absolute;
   text-shadow: 0 0 1px #d100b1, 0 -3px 3px rgba(255, 255, 255, 0.8), 0 3px 3px rgba(0, 0, 0, 0.5), 0 0 15px #d100b1, 0 0
@@ -537,7 +537,7 @@ h2 {
   -webkit-transform: skew(-10deg) rotate(-10deg);
   -ms-transform: skew(-10deg) rotate(-10deg);
   transform: skew(-10deg) rotate(-10deg);
-  top: 55%;
+  top: 56%;
   width: 100%;
   z-index: 11;
 }
