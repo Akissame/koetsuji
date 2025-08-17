@@ -146,8 +146,8 @@ body {
     }
 
     h1 {
-        font-size: clamp(35px, 10vw, 50px) !important;
-        top: 55% !important;
+        font-size: clamp(40px, 10vw, 50px) !important;
+        top: 60% !important;
     }
 
     h2 {
