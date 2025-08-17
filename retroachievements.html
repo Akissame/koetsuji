@@ -161,7 +161,7 @@
             position: relative;
             z-index: 10;
             padding: 100px 20px 50px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -259,11 +259,32 @@
             box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
         }
 
-        .support-grid {
+        /* New Layout Structure */
+        .layout-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: auto auto;
             gap: 30px;
             margin-top: 30px;
+        }
+
+        .left-column {
+            grid-column: 1;
+            grid-row: 1 / 3;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .top-right {
+            grid-column: 2;
+            grid-row: 1 / 3;
+        }
+
+        .bottom-left {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
         .support-card {
@@ -273,6 +294,7 @@
             padding: 25px;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
+            height: fit-content;
         }
 
         .support-card:hover {
@@ -340,6 +362,23 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .layout-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .left-column {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .top-right {
+                grid-column: 1;
+                grid-row: 2;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 top: 20px;
@@ -354,8 +393,11 @@
                 padding: 20px;
             }
 
-            .support-grid {
-                grid-template-columns: 1fr;
+            .layout-container {
+                gap: 20px;
+            }
+
+            .bottom-left {
                 gap: 20px;
             }
 
@@ -383,7 +425,7 @@
     <!-- Navigation -->
     <nav class="nav-links">
         <a href="/" class="nav-btn">
-            <i class="fas fa-arrow-left"></i> Volver
+            <i class="fas fa-arrow-left"></i> Back
         </a>
     </nav>
 
@@ -394,72 +436,161 @@
             
             <!-- App Showcase -->
             <div class="app-info">
-                <p>Aplicación móvil para explorar y gestionar tus logros de RetroAchievements.org. Interfaz nativa para iOS y Android con todas las funcionalidades principales.</p>
+                <p>Retro Achievements is a complete mobile application designed for retro gaming enthusiasts that allows tracking, comparing and celebrating achievements in classic games. The app offers a comprehensive gamification experience with social and competitive features.</p>
                 <div class="app-links">
                     <a href="https://play.google.com/store/apps/details?id=com.akissame.retroachievements" class="app-btn" target="_blank">
                         <i class="fab fa-google-play"></i> Google Play
                     </a>
+                </div><br>
+                <p>Coming soon to...</p>
+                <div class="app-links">
                     <a href="#" class="app-btn">
                         <i class="fab fa-apple"></i> App Store
                     </a>
                 </div>
             </div>
             
-            <div class="support-grid">
-                <!-- Contacto Principal -->
-                <div class="support-card">
-                    <h3><i class="fas fa-headset"></i> Contacto</h3>
-                    <p>Para soporte de la app RetroAchievements o cualquier consulta:</p>
-                    <a href="mailto:support@akissame.com.co" class="contact-email">
-                        <i class="fas fa-envelope"></i> support@akissame.com.co
-                    </a>
-                    <p><strong>Tiempo de respuesta:</strong> 24-48 horas</p>
-                    <p><strong>Idiomas:</strong> Español e Inglés</p>
-                </div>
+            <!-- New Layout Structure -->
+            <div class="layout-container">
+                <!-- Left Column - App Info -->
+                <div class="left-column">
+                    <div class="support-card">
+                        <h3><i class="fas fa-trophy"></i> Retro Achievements</h3>
+                        <p>Application for managing retroachievements.org achievements</p>
+                        <ul>
+                            <li>Custom Achievement Management</li>
+                            <li>Special Achievement Tracking</li>
+                            <li>Missable Achievement Detection</li>
+                            <li>Achievement and Progress Visualization</li>
+                            <li>Customizable View</li>
+                            <li>Achievement of the Week</li>
+                            <li>Achievement of the Month</li>
+                            <li>Achievement Trading</li>
+                            <li>Event History</li>
+                            <li>Player Following</li>
+                            <li>Statistics Comparison - Versus Mode</li>
+                            <li>Recent Activity</li>
+                            <li>Comment Reading</li>
+                            <li>Console Search</li>
+                            <li>New Releases</li>
+                            <li>Leaderboards</li>
+                            <li>Favorites Management</li>
+                            <li>Hash Information</li>
+                            <li>Patch Downloads</li>
+                            <li>FAQ System</li>
+                            <li>Optimized Interface</li>
+                            <li>Sharing System</li>
+                            <li>Detailed View</li>
+                            <li>Available in 46 different languages</li>
+                        </ul>
+                    </div>
 
-                <!-- App Info -->
-                <div class="support-card">
-                    <h3><i class="fas fa-trophy"></i> RetroAchievements App</h3>
-                    <p>Aplicación para gestionar logros de RetroAchievements.org</p>
-                    <ul>
-                        <li>Visualiza logros y progreso</li>
-                        <li>Explora biblioteca de juegos</li>
-                        <li>Compara estadísticas</li>
-                        <li>Interfaz nativa móvil</li>
-                        <li>Totalmente gratuita</li>
-                    </ul>
-                </div>
+                    <!-- Bottom Left - Two columns below App Info -->
+                    <div class="bottom-left">
+                        <!-- Problemas Técnicos -->
+                        <div class="support-card">
+                            <h3><i class="fas fa-tools"></i> Troubleshooting</h3>
+                            <div>
+                                <p><strong>App doesn't load data:</strong><br>
+                                1. Check internet connection<br>
+                                2. Verify username<br>
+                                3. Restart app<br>
+                                4. Contact support</p>
+                                
+                                <p><strong>App crashes:</strong><br>
+                                Update app and restart device</p>
+                            </div>
+                        </div>
 
-                <!-- FAQ -->
-                <div class="support-card">
-                    <h3><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h3>
-                    <div>
-                        <p><strong>¿Necesito cuenta de RetroAchievements?</strong><br>
-                        Sí, necesitas una cuenta gratuita de RetroAchievements.org</p>
-                        
-                        <p><strong>¿La app es gratuita?</strong><br>
-                        Completamente gratuita, sin anuncios ni compras.</p>
-                        
-                        <p><strong>¿No veo mis logros recientes?</strong><br>
-                        Verifica internet y reinicia la app.</p>
+                        <!-- Contacto  -->
+                        <div class="support-card">
+                            <h3><i class="fas fa-headset"></i> Contact</h3>
+                            <p>For Retro Achievements app support or any inquiry:</p>
+                            <a href="mailto:akissameflashbacks@gmail.com" class="contact-email">
+                                <i class="fas fa-envelope"></i> akissameflashbacks@gmail.com
+                            </a>
+                            <p><strong>Response time:</strong> 24-48 hours</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Problemas Técnicos -->
-                <div class="support-card">
-                    <h3><i class="fas fa-tools"></i> Solución de Problemas</h3>
-                    <div>
-                        <p><strong>App no carga datos:</strong><br>
-                        1. Verifica internet<br>
-                        2. Confirma nombre usuario<br>
-                        3. Reinicia app<br>
-                        4. Contacta soporte</p>
+                <!-- Right Column - FAQ -->
+                <div class="top-right">
+                    <div class="support-card">
+                        <h3><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h3>
                         
-                        <p><strong>Error login:</strong><br>
-                        Verifica usuario y API Key en RetroAchievements.org</p>
-                        
-                        <p><strong>App se cierra:</strong><br>
-                        Actualiza app y reinicia dispositivo</p>
+                            <p><strong>Do I need a RetroAchievements account?</strong><br>
+                                Yes, you need a free account from 
+                                <a href="https://retroachievements.org" target="_blank"> retroAchievements.org</a>
+                            </p>
+                            <p><strong>How do I set up RetroAchievements on my emulator?</strong><br>
+                            To get started you need to:
+                                <ul>
+                                    <li>On your supported emulator (such as RetroArch), find the RetroAchievements section in the settings</li>
+                                    <li>Enter your username and password</li>
+                                    <li>Toggle the 'RetroAchievements' option</li>
+                                    <li>Enable Hardcore mode if you want to appear in the rankings</li>
+                                    <li>Restart the emulator to apply the changes</li>
+                                </ul>
+                            </p>
+                            <p><strong>What is Hardcore mode and why should I use it?</strong><br>
+                            Hardcore mode is the official way to earn achievements in RetroAchievements.</p> When enabled: 
+                            
+                                <ul>
+                                    <li>Save states, rewinds, and cheats are disabled</li>
+                                    <li>Your achievements count towards global rankings</li>
+                                    <li>You get the full amount of points per achievement</li>
+                                    <li>You appear on leaderboards</li>
+                                </ul>
+                                <p>It is always recommended to play in Hardcore mode for the full experience</p>
+                            <p><strong>Why are my points still at zero even though I unlock achievements?</strong><br>
+                            This can happen for a few reasons:
+                                <ul>
+                                    <li>Hardcore mode is disabled (points only count in Hardcore mode)</li>
+                                    <li>You are using an outdated version of the emulator (versions older than 2 years are considered Softcore mode)</li>
+                                    <li>The connection to the servers is failing</li>
+                                    <li>Your account is not linked correctly Check these points and make sure you have everything updated and set up correctly</li>
+                                </ul>
+                            </p>
+                            <p><strong>Why are my trophies or badges not showing up on my profile?</strong><br>
+                            There are two types of badges:
+                                <ul>
+                                    <li>Badges for completing all achievements in a game - these appear automatically</li>
+                                    <li>Trophies from special events - these may take a few days to appear while all conditions are checked If after a week you don't see your automatic badges, check that all achievements are actually completed</li>
+                                </ul>
+                            </p>
+                            <p><strong>How does the rank system work?</strong><br>
+                            The rank system works like this:
+                                <ul>
+                                    <li>You need at least 250 points to get your first rank</li>
+                                    <li>Points only count in Hardcore mode</li>
+                                    <li>Your rank automatically improves as you accumulate more points</li>
+                                    <li>Ranks reflect your experience and dedication to the platform. If your rank is listed as 'null', you need to reach the minimum of 250 points in Hardcore mode</li>
+                                </ul>
+                            </p>
+                            <p><strong>Where can I find guides or help for achievements?</strong><br>
+                            There are several resources:
+                                <ul>
+                                    <li>Feedback on achievements - the community often leaves helpful tips</li>
+                                    <li>Official RetroAchievements Forum</li>
+                                    <li>Guides section on the main website</li>
+                                    <li>Official Community Discord, Remember that part of the fun is discovering achievements for yourself, but there's always help available if you need it</li>
+                                </ul>
+                            </p>
+                            <p><strong>How can I contribute to the community?</strong><br>
+                            There are several ways to contribute:
+                                <ul>
+                                    <li>Comment on achievements to help other players</li>
+                                    <li>Report bugs or issues with achievements</li>
+                                    <li>Participate in community events</li>
+                                    <li>Share your experiences on the forum</li>
+                                    <li>Help other players on Discord</li>
+                                </ul>
+                            </p>
+                        <div>
+                            <p><strong>Is the app free?</strong><br>
+                            Yes, it's completely free, but contains ads and subscriptions to remove them.</p>
+                        </div>
                     </div>
                 </div>
             </div>
