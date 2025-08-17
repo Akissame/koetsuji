@@ -135,8 +135,7 @@ body {
     }
     
     .nav-btn {
-        padding: 18px 32px;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
         min-height: 55px;
         border-radius: 30px;
     }
@@ -146,7 +145,7 @@ body {
     }
 
     h1 {
-        font-size: clamp(40px, 10vw, 50px) !important;
+        font-size: clamp(50px, 10vw, 50px) !important;
         top: 60% !important;
     }
 
