@@ -7,6 +7,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* Smooth scrolling for the whole page */
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -132,6 +137,8 @@
             top: 30px;
             left: 30px;
             z-index: 100;
+            display: flex;
+            gap: 15px;
         }
 
         .nav-btn {
@@ -295,6 +302,7 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             height: fit-content;
+            scroll-margin-top: 120px;
         }
 
         .support-card:hover {
@@ -361,6 +369,13 @@
             line-height: 1.5;
         }
 
+        /* Highlight effect for privacy policy */
+        .highlight-privacy {
+            border: 2px solid #00ffff !important;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5) !important;
+            transform: scale(1.02) !important;
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
             .layout-container {
@@ -383,6 +398,8 @@
             .nav-links {
                 top: 20px;
                 left: 20px;
+                flex-direction: column;
+                gap: 10px;
             }
 
             .support-container {
@@ -427,7 +444,7 @@
         <a href="/" class="nav-btn">
             <i class="fas fa-arrow-left"></i> Home
         </a>
-        <a href="#privacy-policy" class="nav-btn" onclick="scrollToPrivacyPolicy(); return false;">
+        <a href="javascript:void(0)" class="nav-btn" onclick="scrollToPrivacyPolicy()">
             <i class="fas fa-shield-alt"></i> Privacy
         </a>
     </nav>
@@ -489,7 +506,7 @@
                     </div>
                     
                     <!-- privacy policy  -->
-                    <div class="support-card">
+                    <div class="support-card" id="privacy-policy">
                         <h3><i class="fas fa-file-contract"></i> Privacy policy</h3>
                         <p>This app does NOT have a direct relationship with RetroAchievements.org, but DOES use data provided by their public API and therefore adheres to their:</p>
 
@@ -636,8 +653,59 @@
             }
         }
 
+        // Function to scroll to privacy policy section
+        function scrollToPrivacyPolicy() {
+            console.log('Navegando a la política de privacidad...');
+            const privacySection = document.getElementById('privacy-policy');
+            
+            if (privacySection) {
+                // Scroll suave a la sección
+                privacySection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Agregar efecto visual
+                privacySection.classList.add('highlight-privacy');
+                
+                // Remover efecto después de 3 segundos
+                setTimeout(() => {
+                    privacySection.classList.remove('highlight-privacy');
+                }, 3000);
+                
+                console.log('Navegación completada');
+            } else {
+                console.error('No se encontró la sección de política de privacidad');
+            }
+        }
+
+        // Detectar hash en la URL al cargar la página
+        function checkHashOnLoad() {
+            const hash = window.location.hash;
+            if (hash === '#privacy-policy') {
+                setTimeout(scrollToPrivacyPolicy, 1000);
+            }
+        }
+
+        // Manejar cambios de hash
+        window.addEventListener('hashchange', function() {
+            if (window.location.hash === '#privacy-policy') {
+                scrollToPrivacyPolicy();
+            }
+        });
+
         // Initialize
         createStars();
+        
+        // Ejecutar al cargar la página
+        window.addEventListener('load', checkHashOnLoad);
+        
+        // También ejecutar si el DOM ya está listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkHashOnLoad);
+        } else {
+            checkHashOnLoad();
+        }
     </script>
 </body>
 </html>
