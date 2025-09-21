@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Página no encontrada</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        :root {
+            --primary: #FFA500;  /* Naranja */
+            --secondary: #800080;  /* Morado */
+            --accent: #FFD700;  /* Amarillo dorado */
+            --dark: #4A0E4E;  /* Fondo morado oscuro */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--dark);
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .error-code {
+            font-size: 150px;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 2px 2px var(--secondary);
+            animation: glitch 3s infinite;
+        }
+
+        .error-title {
+            font-size: 32px;
+            color: var(--primary);
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px var(--secondary);
+        }
+
+        .error-message {
+            font-size: 18px;
+            color: var(--accent);
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .home-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .home-button:hover {
+            background: transparent;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .pixel-art {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .pixel {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px var(--secondary);
+            }
+            15% {
+                text-shadow: -2px 0 var(--primary), 2px 0 var(--accent);
+            }
+            16% {
+                text-shadow: 2px 2px var(--secondary);
+            }
+            49% {
+                text-shadow: 2px 2px var(--secondary);
+            }
+            50% {
+                text-shadow: 2px 0 var(--accent), -2px 0 var(--primary);
+            }
+            51% {
+                text-shadow: 2px 2px var(--secondary);
+            }
+            100% {
+                text-shadow: 2px 2px var(--secondary);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pixel-art" id="pixelArt"></div>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Página no encontrada</h2>
+        <p class="error-message">Parece que te has perdido en el ciberespacio.</p>
+        <p class="error-message">La página que buscas no existe o ha sido movida a otra dimensión.</p>
+        <a href="https://akissame.com.co/" class="home-button">Volver al inicio</a>
+    </div>
+
+    <script>
+        // Crear píxeles para el fondo
+        const pixelArt = document.getElementById('pixelArt');
+        for (let i = 0; i < 100; i++) {
+            const pixel = document.createElement('div');
+            pixel.classList.add('pixel');
+            pixel.style.left = `${Math.random() * 100}%`;
+            pixel.style.top = `${Math.random() * 100}%`;
+            pixel.style.backgroundColor = ['#FFA500', '#800080', '#FFD700'][Math.floor(Math.random() * 3)];
+            pixelArt.appendChild(pixel);
+        }
+    </script>
+</body>
+</html>
