@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://akissame.com.co/sitemap.xml
