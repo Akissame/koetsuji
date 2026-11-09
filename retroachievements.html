@@ -1,848 +1,359 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RetroAchievements Mobile App</title>
-    <link rel="icon" type="image/png" href="./assets/retroachievements_favicon.ico">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Smooth scrolling for the whole page */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Exo 2', sans-serif;
-            overflow-x: hidden;
-            background: #000;
-            color: #fff;
-            min-height: 100vh;
-        }
-
-        /* Synthwave Background */
-        .synthwave-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, 
-                #1a0033 0%, 
-                #330066 25%, 
-                #4d0099 50%, 
-                #6600cc 75%, 
-                #8000ff 100%);
-            z-index: -3;
-        }
-
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: twinkle 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-
-        /* Sun/Moon */
-        .sun {
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #ff6b35, #f7931e, #ffcc02);
-            border-radius: 50%;
-            box-shadow: 0 0 100px rgba(255, 107, 53, 0.8);
-            z-index: -1;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.05); }
-        }
-
-        /* City Skyline */
-        .cityscape {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 300px;
-            z-index: -1;
-        }
-
-        .building {
-            position: absolute;
-            bottom: 0;
-            background: linear-gradient(to top, #000, #222);
-            border-top: 2px solid #ff00ff;
-        }
-
-        .building:nth-child(1) { left: 5%; width: 60px; height: 180px; }
-        .building:nth-child(2) { left: 12%; width: 40px; height: 220px; }
-        .building:nth-child(3) { left: 18%; width: 80px; height: 160px; }
-        .building:nth-child(4) { left: 28%; width: 50px; height: 250px; }
-        .building:nth-child(5) { left: 35%; width: 70px; height: 190px; }
-        .building:nth-child(6) { left: 45%; width: 90px; height: 280px; }
-        .building:nth-child(7) { left: 58%; width: 60px; height: 200px; }
-        .building:nth-child(8) { left: 68%; width: 75px; height: 240px; }
-        .building:nth-child(9) { left: 78%; width: 55px; height: 170px; }
-        .building:nth-child(10) { left: 88%; width: 65px; height: 210px; }
-
-        /* Grid Floor */
-        .grid {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 300px;
-            background: 
-                linear-gradient(90deg, transparent 98%, #ff00ff 100%),
-                linear-gradient(0deg, transparent 98%, #ff00ff 100%);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg);
-            transform-origin: bottom;
-            opacity: 0.6;
-            z-index: 0;
-        }
-
-        /* Navigation */
-        .nav-links {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            z-index: 100;
-            display: flex;
-            gap: 15px;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid #ff00ff;
-            color: #ff00ff;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 0, 255, 0.2);
-            color: #00ffff;
-            border-color: #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        /* Support Content */
-        .support-container {
-            position: relative;
-            z-index: 10;
-            padding: 100px 20px 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .support-content {
-            background: rgba(20, 0, 40, 0.9);
-            border: 2px solid #ff00ff;
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(15px);
-        }
-
-        .support-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: #00ffff;
-            text-align: center;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            animation: neonGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes neonGlow {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
-            50% { text-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 0.5); }
-        }
-
-        .app-info {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #ff00ff;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .app-info::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 0, 255, 0.1), transparent);
-            animation: scanline 3s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .app-info h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            color: #00ffff;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .app-info p {
-            color: #ccc;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
-
-        .app-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .app-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #ff00ff, #ff0080);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .app-btn:hover {
-            background: linear-gradient(45deg, #00ffff, #0080ff);
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
-        }
-
-        /* New Layout Structure */
-        .layout-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-template-rows: auto auto;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .left-column {
-            grid-column: 1;
-            grid-row: 1 / 3;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .top-right {
-            grid-column: 2;
-            grid-row: 1 / 3;
-        }
-
-        .bottom-left {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .support-card {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #ff00ff;
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            height: fit-content;
-            scroll-margin-top: 120px;
-        }
-
-        .support-card:hover {
-            border-color: #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .support-card h3 {
-            color: #ff00ff;
-            font-family: 'Orbitron', monospace;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .support-card p {
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .support-card ul {
-            color: #ccc;
-            margin: 15px 0;
-            padding-left: 20px;
-        }
-
-        .support-card li {
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .contact-email {
-            display: inline-block;
-            color: #00ffff;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            border: 1px solid #00ffff;
-            border-radius: 20px;
-            margin: 10px 0;
-            transition: all 0.3s ease;
-        }
-
-        .contact-email:hover {
-            background: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-            transform: scale(1.05);
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #ff00ff;
-        }
-
-        .footer p {
-            color: #888;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* Highlight effect for privacy policy */
-        .highlight-privacy {
-            border: 2px solid #00ffff !important;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5) !important;
-            transform: scale(1.02) !important;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .layout-container {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto;
-            }
-
-            .left-column {
-                grid-column: 1;
-                grid-row: 1;
-            }
-
-            .top-right {
-                grid-column: 1;
-                grid-row: 2;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                overflow-x: hidden;
-            }
-
-            .nav-links {
-                top: 15px;
-                left: 15px;
-                right: 15px;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-
-            .nav-btn {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-                flex: 1;
-                min-width: 80px;
-                justify-content: center;
-            }
-
-            .support-container {
-                padding: 70px 5px 30px;
-                width: 100%;
-                max-width: 100%;
-            }
-
-            .support-content {
-                padding: 15px;
-                margin: 0;
-                border-radius: 15px;
-                width: 100%;
-                max-width: 100%;
-                overflow: hidden;
-            }
-
-            .support-title {
-                font-size: 1.8rem;
-                margin-bottom: 20px;
-            }
-
-            .app-info {
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-
-            .app-info p {
-                font-size: 1rem;
-            }
-
-            .layout-container {
-                gap: 15px;
-                margin-top: 20px;
-                width: 100%;
-                max-width: 100%;
-            }
-
-            .support-card {
-                padding: 18px;
-                margin: 0;
-                width: 100%;
-                max-width: 100%;
-                box-sizing: border-box;
-                overflow: hidden;
-                word-wrap: break-word;
-            }
-
-            .support-card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 12px;
-            }
-
-            .support-card p {
-                font-size: 0.9rem;
-                line-height: 1.5;
-            }
-
-            .support-card ul {
-                padding-left: 18px;
-                margin: 12px 0;
-            }
-
-            .support-card li {
-                font-size: 0.9rem;
-                margin-bottom: 6px;
-                line-height: 1.3;
-            }
-
-            .bottom-left {
-                gap: 15px;
-            }
-
-            .sun {
-                width: 150px;
-                height: 150px;
-                top: 5%;
-            }
-
-            .app-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .app-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-                width: fit-content;
-                min-width: 140px;
-            }
-
-            .contact-email {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-                word-break: break-all;
-            }
-
-            /* Fix grid floor on mobile */
-            .grid {
-                background-size: 30px 30px;
-            }
-
-            /* Ensure no horizontal overflow */
-            * {
-                max-width: 100%;
-                box-sizing: border-box;
-            }
-        }
-
-        /* Extra small screens */
-        @media (max-width: 480px) {
-            .support-container {
-                padding: 60px 3px 20px;
-            }
-
-            .support-content {
-                padding: 12px;
-            }
-
-            .support-title {
-                font-size: 1.5rem;
-            }
-
-            .nav-links {
-                left: 10px;
-                right: 10px;
-            }
-
-            .nav-btn {
-                padding: 6px 12px;
-                font-size: 0.75rem;
-                min-width: 70px;
-            }
-
-            .support-card {
-                padding: 15px;
-            }
-
-            .support-card h3 {
-                font-size: 1rem;
-            }
-
-            .support-card p, .support-card li {
-                font-size: 0.85rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100b1d">
+  <title>RetroAchievements — Track your retro gaming journey | Akissame</title>
+  <meta name="description" content="A companion app for exploring your RetroAchievements profile, tracking progress, discovering achievements and keeping up with the community.">
+  <link rel="canonical" href="https://akissame.com.co/retroachievements">
+  <link rel="icon" href="./assets/retroachievements_favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RetroAchievements — Your retro gaming progress, in one place">
+  <meta property="og:description" content="Explore achievements, follow players and keep up with your retro gaming journey.">
+  <meta property="og:url" content="https://akissame.com.co/retroachievements">
+  <meta property="og:image" content="https://akissame.com.co/assets/akissame-social.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ra-bg: #0d0a16;
+      --ra-panel: #171222;
+      --ra-panel-2: #20172f;
+      --ra-text: #f7f2ff;
+      --ra-muted: #b8adc9;
+      --ra-purple: #a855f7;
+      --ra-pink: #f05ac8;
+      --ra-gold: #ffc247;
+      --ra-line: rgba(218, 185, 255, .15);
+      --ra-max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; background: var(--ra-bg); color: var(--ra-text);
+      font-family: Inter, system-ui, sans-serif; line-height: 1.65;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    .ra-shell { min-height: 100vh; position: relative; isolation: isolate; }
+    .ra-shell::before {
+      content: ""; position: absolute; z-index: -2; inset: 0 0 auto; height: 760px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(151, 55, 221, .30), transparent 55%),
+        radial-gradient(ellipse at 12% 36%, rgba(255, 75, 164, .10), transparent 35%),
+        linear-gradient(180deg, #1b1030 0%, #100b1d 78%, var(--ra-bg) 100%);
+      pointer-events: none;
+    }
+    .ra-container { width: min(var(--ra-max), calc(100% - 48px)); margin: 0 auto; }
+    .ra-nav {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px);
+      background: rgba(13, 10, 22, .82); border-bottom: 1px solid var(--ra-line);
+    }
+    .ra-nav-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .ra-brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font: 700 17px "Space Grotesk", sans-serif; }
+    .ra-brand img { width: 34px; height: 34px; object-fit: contain; image-rendering: pixelated; }
+    .ra-brand span { color: var(--ra-muted); font: 500 12px Inter, sans-serif; margin-left: 5px; }
+    .ra-nav-links { display: flex; align-items: center; gap: 26px; }
+    .ra-nav-links a { color: var(--ra-muted); text-decoration: none; font-size: 13px; font-weight: 600; transition: color .2s; }
+    .ra-nav-links a:hover { color: white; }
+    .ra-nav-links .ra-home { color: #e5c9ff; }
+    .ra-menu-button { display: none; border: 1px solid var(--ra-line); background: var(--ra-panel); color: white; border-radius: 10px; padding: 9px 12px; font: inherit; }
+    .ra-hero { padding: 60px 0 78px; text-align: center; position: relative; }
+    .ra-eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px;
+      border: 1px solid rgba(202, 144, 255, .28); border-radius: 999px;
+      background: rgba(124, 58, 237, .12); color: #e4c5ff; font-size: 11px;
+      font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+    }
+    .ra-eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ra-gold); box-shadow: 0 0 12px var(--ra-gold); }
+    .ra-hero-logo {
+      width: clamp(112px, 16vw, 164px); aspect-ratio: 1; object-fit: contain;
+      image-rendering: pixelated; margin: 25px auto 13px; display: block;
+      filter: drop-shadow(0 12px 32px rgba(231, 85, 218, .18));
+    }
+    h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; line-height: 1.12; }
+    .ra-hero h1 { max-width: 850px; margin: 0 auto; font-size: clamp(38px, 6vw, 68px); letter-spacing: -.055em; }
+    .ra-gradient-text { background: linear-gradient(95deg, #fff 15%, #e7baff 52%, #ffbd68 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
+    .ra-hero-copy { max-width: 690px; margin: 22px auto 0; color: var(--ra-muted); font-size: clamp(15px, 1.7vw, 18px); }
+    .ra-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .ra-store {
+      min-height: 49px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 0 19px; border-radius: 12px; text-decoration: none; font-size: 13px; font-weight: 800;
+      border: 1px solid transparent; transition: transform .2s, border-color .2s, background .2s;
+    }
+    .ra-store:hover { transform: translateY(-2px); }
+    .ra-store-primary { color: #170d22; background: linear-gradient(110deg, #ffd36e, #ff9c67); box-shadow: 0 9px 30px rgba(255, 163, 94, .16); }
+    .ra-store-secondary { color: white; background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.17); }
+    .ra-store svg { width: 19px; height: 19px; fill: currentColor; }
+    .ra-hero-note { margin: 16px 0 0; color: #9185a4; font-size: 11px; }
+    .ra-section { padding: 76px 0; }
+    .ra-section-head { max-width: 690px; margin-bottom: 30px; }
+    .ra-kicker { color: #d18aff; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .ra-section h2 { margin: 10px 0 12px; font-size: clamp(29px, 4vw, 43px); letter-spacing: -.04em; }
+    .ra-section-head p { margin: 0; color: var(--ra-muted); }
+    .ra-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .ra-feature {
+      min-height: 120px; padding: 23px; border: 1px solid var(--ra-line); border-radius: 17px;
+      background: linear-gradient(145deg, rgba(35, 25, 52, .92), rgba(20, 15, 30, .92));
+      transition: transform .2s, border-color .2s;
+    }
+    .ra-feature:hover { transform: translateY(-4px); border-color: rgba(207, 139, 255, .48); }
+    .ra-feature-icon {
+      width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px;
+      color: var(--ra-gold); background: rgba(255, 194, 71, .10); font-size: 19px;
+    }
+    .ra-feature h3 { margin: 0 0 9px; font-size: 17px; }
+    .ra-feature p { color: var(--ra-muted); font-size: 13px; margin: 0; }
+    .ra-highlight {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;
+      padding: 34px; border-radius: 22px; border: 1px solid rgba(190, 125, 255, .25);
+      background: radial-gradient(ellipse at 100% 0%, rgba(156, 71, 215, .19), transparent 55%), var(--ra-panel);
+    }
+    .ra-highlight h2 { margin: 9px 0 14px; font-size: clamp(28px, 3.7vw, 40px); }
+    .ra-highlight p { color: var(--ra-muted); margin: 0 0 19px; }
+    .ra-text-link { color: #e6bdff; font-size: 13px; font-weight: 800; text-decoration: none; }
+    .ra-text-link:hover { text-decoration: underline; }
+    .ra-highlight-art {
+      min-height: 240px; border-radius: 16px; display: grid; place-items: center; overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(244, 111, 193, .25), transparent 45%),
+        linear-gradient(145deg, #2b1b42, #151020);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .ra-highlight-art img { width: 145px; height: 145px; image-rendering: pixelated; object-fit: contain; filter: drop-shadow(0 12px 25px rgba(0,0,0,.35)); }
+    .ra-disclaimer { padding: 19px 21px; border-left: 3px solid var(--ra-gold); background: rgba(255, 194, 71, .07); border-radius: 0 12px 12px 0; color: #d5c9df; font-size: 13px; }
+    .ra-disclaimer strong { color: white; }
+    .ra-faq { display: grid; grid-template-columns: .75fr 1.25fr; gap: 48px; align-items: start; }
+    .ra-faq-intro p { color: var(--ra-muted); }
+    .ra-faq-list { display: grid; gap: 10px; }
+    .ra-faq details { border: 1px solid var(--ra-line); border-radius: 13px; background: rgba(28, 21, 41, .72); }
+    .ra-faq summary { cursor: pointer; list-style: none; padding: 17px 19px; font-size: 14px; font-weight: 700; }
+    .ra-faq summary::-webkit-details-marker { display: none; }
+    .ra-faq summary::after { content: "+"; float: right; color: var(--ra-gold); font-size: 18px; line-height: 1; }
+    .ra-faq details[open] summary::after { content: "−"; }
+    .ra-faq details p, .ra-faq details ul { color: var(--ra-muted); font-size: 13px; margin: 0; padding: 0 19px 18px; }
+    .ra-faq details ul { padding-left: 39px; }
+    .ra-support-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .ra-support-card { padding: 25px; border: 1px solid var(--ra-line); border-radius: 16px; background: var(--ra-panel); }
+    .ra-support-card h3 { margin: 0 0 10px; font-size: 18px; }
+    .ra-support-card p { color: var(--ra-muted); font-size: 13px; margin: 0 0 14px; }
+    .ra-support-card a { color: #e6bdff; font-size: 13px; font-weight: 700; text-decoration: none; }
+    .ra-footer { border-top: 1px solid var(--ra-line); padding: 27px 0; color: #9489a4; font-size: 12px; }
+    .ra-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .ra-footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .ra-footer a { text-decoration: none; }
+    .ra-footer a:hover { color: white; }
+    @media (max-width: 800px) {
+      .ra-feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .ra-faq { grid-template-columns: 1fr; gap: 20px; }
+      .ra-highlight { gap: 22px; padding: 25px; }
+    }
+    @media (max-width: 600px) {
+      .ra-container { width: min(100% - 32px, var(--ra-max)); }
+      .ra-nav-inner { min-height: 64px; }
+      .ra-menu-button { display: inline-flex; }
+      .ra-nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0; padding: 16px 20px 20px;
+        flex-direction: column; align-items: stretch; gap: 0; background: rgba(13,10,22,.98);
+        border-bottom: 1px solid var(--ra-line);
+      }
+      .ra-nav-links.is-open { display: flex; }
+      .ra-nav-links a { padding: 12px 4px; }
+      .ra-brand span { display: none; }
+      .ra-hero { padding: 62px 0 55px; }
+      .ra-hero-logo { width: 112px; margin-top: 21px; }
+      .ra-section { padding: 55px 0; }
+      .ra-feature-grid, .ra-support-grid, .ra-highlight { grid-template-columns: 1fr; }
+      .ra-feature { min-height: 0; }
+      .ra-highlight-art { min-height: 180px; }
+      .ra-highlight-art img { width: 112px; height: 112px; }
+      .ra-footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
 </head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBMQXTQRRZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YBMQXTQRRZ');
-</script>
-    
 <body>
-    <!-- Synthwave Background -->
-    <div class="synthwave-bg"></div>
-    <div class="stars"></div>
-    <div class="sun"></div>
-    
-    <!-- Grid Floor -->
-    <div class="grid"></div>
-
-    <!-- Navigation -->
-    <nav class="nav-links">
-        <a href="/" class="nav-btn">Home</a>
-    </nav>
-
-    <!-- Support Content -->
-    <div class="support-container">
-        <div class="support-content">
-            <h1 class="support-title">Retro Achievements</h1>
-            
-            <!-- App Showcase -->
-            <div class="app-info">
-                <p>Retro Achievements is a complete mobile application designed for retro gaming enthusiasts that allows tracking, comparing and celebrating achievements in classic games. The app offers a comprehensive gamification experience with social and competitive features.</p>
-                <div class="app-links">
-                    <a href="https://play.google.com/store/apps/details?id=com.akissame.retroachievements" class="app-btn" target="_blank">
-                        <i class="fab fa-google-play"></i> Google Play
-                    </a>
-                    <a href="https://apps.apple.com/app/retro-achievements/id6751086905" class="app-btn">
-                        <i class="fab fa-apple"></i> App Store
-                    </a>
-                </div>
-            </div>
-            
-            <!-- New Layout Structure -->
-            <div class="layout-container">
-                <!-- Left Column - App Info -->
-                <div class="left-column">
-                    <div class="support-card">
-                        <h3><i class="fas fa-trophy"></i> Retro Achievements</h3>
-                        <p>Application for managing retroachievements.org achievements</p>
-                        <ul>
-                            <li>Custom Achievement Management</li>
-                            <li>Special Achievement Tracking</li>
-                            <li>Missable Achievement Detection</li>
-                            <li>Achievement and Progress Visualization</li>
-                            <li>Customizable View</li>
-                            <li>Achievement of the Week</li>
-                            <li>Achievement of the Month</li>
-                            <li>Achievement Trading</li>
-                            <li>Event History</li>
-                            <li>Player Following</li>
-                            <li>Statistics Comparison - Versus Mode</li>
-                            <li>Recent Activity</li>
-                            <li>Comment Reading</li>
-                            <li>Console Search</li>
-                            <li>New Releases</li>
-                            <li>Leaderboards</li>
-                            <li>Favorites Management</li>
-                            <li>Hash Information</li>
-                            <li>Patch Downloads</li>
-                            <li>FAQ System</li>
-                            <li>Optimized Interface</li>
-                            <li>Sharing System</li>
-                            <li>Detailed View</li>
-                            <li>Available in 46 different languages</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- privacy policy  -->
-                    <div class="support-card" id="privacy-policy">
-                        <h3><i class="fas fa-file-contract"></i> Privacy policy</h3>
-                        <p>This app does NOT have a direct relationship with RetroAchievements.org, but DOES use data provided by their public API and therefore adheres to their:</p>
-
-                        <div class="app-links">
-                            <a href="https://retroachievements.org/terms" class="app-btn" target="_blank">
-                                privacy policy
-                            </a>
-                        </div><br>
-                        <p>This app does NOT collect data additional to RetroAchievements.org.</p>
-                    </div>
-
-                    <!-- Bottom Left - Two columns below App Info -->
-                    <div class="bottom-left">
-                        <!-- Problemas Técnicos -->
-                        <div class="support-card">
-                            <h3><i class="fas fa-tools"></i> Troubleshooting</h3>
-                            <div>
-                                <p><strong>App doesn't load data:</strong><br>
-                                1. Check internet connection<br>
-                                2. Verify username<br>
-                                3. Restart app<br>
-                                4. Contact support</p>
-                                
-                                <p><strong>App crashes:</strong><br>
-                                Update app and restart device</p>
-                            </div>
-                        </div>
-
-                        <!-- Contacto  -->
-                        <div class="support-card">
-                            <h3><i class="fas fa-headset"></i> Contact</h3>
-                            <p>For Retro Achievements app support or any inquiry:</p>
-                            <a href="mailto:retroachievements@akissame.com.co" class="contact-email">
-                                <i class="fas fa-envelope"></i> retroachievements@akissame.com.co
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column - FAQ -->
-                <div class="top-right">
-                    <div class="support-card">
-                        <h3><i class="fas fa-question-circle"></i> FAQ</h3>
-                            <p><strong>Do I need a RetroAchievements account?</strong><br>
-                                Yes, you need a free account from:
-                            </p>
-                        
-                            <div class="app-links">
-                                <a href="https://retroachievements.org" class="app-btn" target="_blank">
-                                    retroAchievements.org
-                                </a>
-                            </div><br>
-                            <p><strong>How do I set up RetroAchievements on my emulator?</strong><br>
-                            To get started you need to:
-                                <ul>
-                                    <li>On your supported emulator (such as RetroArch), find the RetroAchievements section in the settings</li>
-                                    <li>Enter your username and password</li>
-                                    <li>Toggle the 'RetroAchievements' option</li>
-                                    <li>Enable Hardcore mode if you want to appear in the rankings</li>
-                                    <li>Restart the emulator to apply the changes</li>
-                                </ul>
-                            </p>
-                            <p><strong>What is Hardcore mode and why should I use it?</strong><br>
-                            Hardcore mode is the official way to earn achievements in RetroAchievements.</p> When enabled: 
-                            
-                                <ul>
-                                    <li>Save states, rewinds, and cheats are disabled</li>
-                                    <li>Your achievements count towards global rankings</li>
-                                    <li>You get the full amount of points per achievement</li>
-                                    <li>You appear on leaderboards</li>
-                                </ul>
-                                <p>It is always recommended to play in Hardcore mode for the full experience</p>
-                            <p><strong>Why are my points still at zero even though I unlock achievements?</strong><br>
-                            This can happen for a few reasons:
-                                <ul>
-                                    <li>Hardcore mode is disabled (points only count in Hardcore mode)</li>
-                                    <li>You are using an outdated version of the emulator (versions older than 2 years are considered Softcore mode)</li>
-                                    <li>The connection to the servers is failing</li>
-                                    <li>Your account is not linked correctly Check these points and make sure you have everything updated and set up correctly</li>
-                                </ul>
-                            </p>
-                            <p><strong>Why are my trophies or badges not showing up on my profile?</strong><br>
-                            There are two types of badges:
-                                <ul>
-                                    <li>Badges for completing all achievements in a game - these appear automatically</li>
-                                    <li>Trophies from special events - these may take a few days to appear while all conditions are checked If after a week you don't see your automatic badges, check that all achievements are actually completed</li>
-                                </ul>
-                            </p>
-                            <p><strong>How does the rank system work?</strong><br>
-                            The rank system works like this:
-                                <ul>
-                                    <li>You need at least 250 points to get your first rank</li>
-                                    <li>Points only count in Hardcore mode</li>
-                                    <li>Your rank automatically improves as you accumulate more points</li>
-                                    <li>Ranks reflect your experience and dedication to the platform. If your rank is listed as 'null', you need to reach the minimum of 250 points in Hardcore mode</li>
-                                </ul>
-                            </p>
-                            <p><strong>Where can I find guides or help for achievements?</strong><br>
-                            There are several resources:
-                                <ul>
-                                    <li>Feedback on achievements - the community often leaves helpful tips</li>
-                                    <li>Official RetroAchievements Forum</li>
-                                    <li>Guides section on the main website</li>
-                                    <li>Official Community Discord, Remember that part of the fun is discovering achievements for yourself, but there's always help available if you need it</li>
-                                </ul>
-                            </p>
-                            <p><strong>How can I contribute to the community?</strong><br>
-                            There are several ways to contribute:
-                                <ul>
-                                    <li>Comment on achievements to help other players</li>
-                                    <li>Report bugs or issues with achievements</li>
-                                    <li>Participate in community events</li>
-                                    <li>Share your experiences on the forum</li>
-                                    <li>Help other players on Discord</li>
-                                </ul>
-                            </p>
-                        <div>
-                            <p><strong>Is the app free?</strong><br>
-                            Yes, it's completely free, but contains ads and subscriptions to remove them.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer">
-                <p>
-                    © 2025 Akissame - Steven Oliveros<br>
-                </p>
-            </div>
-        </div>
+<div class="ra-shell">
+  <header class="ra-nav">
+    <div class="ra-container ra-nav-inner">
+      <a class="ra-brand" href="/" aria-label="Akissame home">
+        <img src="./assets/akissame_logo.png" alt="">
+        <strong>Akissame</strong><span> / Apps</span>
+      </a>
+      <button class="ra-menu-button" type="button" aria-expanded="false" aria-controls="ra-navigation">Menu</button>
+      <nav class="ra-nav-links" id="ra-navigation" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+        <a href="#support">Support</a>
+        <a href="https://retroachievements.akissame.com.co/">Web explorer</a>
+      </nav>
     </div>
+  </header>
 
-    <script>
-        // Generate random stars
-        function createStars() {
-            const starsContainer = document.querySelector('.stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 70 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                starsContainer.appendChild(star);
-            }
-        }
+  <main>
+    <section class="ra-hero ra-container">
+      <span class="ra-eyebrow">A companion app for retro players</span>
+      <img class="ra-hero-logo" src="./assets/retroachievements_logo.png" alt="RetroAchievements trophy logo" width="164" height="164">
+      <h1><span class="ra-gradient-text">Your retro gaming journey,</span><br>all in one place.</h1>
+      <p class="ra-hero-copy">Keep an eye on your achievements, follow other players, compare progress and discover what's happening across the RetroAchievements community.</p>
+      <div class="ra-actions">
+        <a class="ra-store ra-store-primary" href="https://play.google.com/store/apps/details?id=com.akissame.retroachievements" target="_blank" rel="noopener noreferrer" aria-label="Get RetroAchievements on Google Play">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.7c-.4.4-.6 1-.6 1.8v15c0 .8.2 1.4.6 1.8L12 12 3.6 2.7zm9.5 8.4 2.2-2.2L5.1 2.5l8 8.6zm0 1.8-8 8.6 10.2-6.4-2.2-2.2zm3.2-3.2L14 12l2.3 2.3 3.1-1.9c1-.6 1-1.5 0-2.1l-3.1-1.9z"/></svg>
+          Google Play
+        </a>
+        <a class="ra-store ra-store-secondary" href="https://apps.apple.com/app/retro-achievements/id6751086905" target="_blank" rel="noopener noreferrer" aria-label="Download RetroAchievements on the App Store">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.7 12.8c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.8-.4 6.9 1.1 9.1.7 1.1 1.5 2.3 2.6 2.2 1-.1 1.4-.7 2.7-.7s1.7.7 2.8.7c1.2 0 1.9-1.1 2.6-2.2.8-1.2 1.1-2.4 1.1-2.4s-2.5-1-2.5-4zm-2.2-6.4c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3z"/></svg>
+          App Store
+        </a>
+      </div>
+      <p class="ra-hero-note">Free to download · Optional subscription to remove ads</p>
+    </section>
 
-        // Function to scroll to privacy policy section
-        function scrollToPrivacyPolicy() {
-            console.log('Navegando a la política de privacidad...');
-            const privacySection = document.getElementById('privacy-policy');
-            
-            if (privacySection) {
-                // Scroll suave a la sección
-                privacySection.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-                
-                // Agregar efecto visual
-                privacySection.classList.add('highlight-privacy');
-                
-                // Remover efecto después de 3 segundos
-                setTimeout(() => {
-                    privacySection.classList.remove('highlight-privacy');
-                }, 3000);
-                
-                console.log('Navegación completada');
-            } else {
-                console.error('No se encontró la sección de política de privacidad');
-            }
-        }
+    <section class="ra-section ra-container" id="features">
+      <div class="ra-section-head">
+        <span class="ra-kicker">Made for your backlog</span>
+        <h2>More than a list of unlocked achievements.</h2>
+        <p>Browse your activity, keep track of goals and find new ways to enjoy the games you already love.</p>
+      </div>
+      <div class="ra-feature-grid">
+        <article class="ra-feature">
+          <h3>Track your progress</h3>
+          <p>Review achievement progress, special challenges, missables and completion details in one place.</p>
+        </article>
+        <article class="ra-feature">
+          <h3>Compare players</h3>
+          <p>Check player statistics, compare progress in Versus mode and keep up with leaderboards.</p>
+        </article>
+        <article class="ra-feature">
+          <h3>Discover what's new</h3>
+          <p>Explore consoles, new releases, Achievement of the Week, Achievement of the Month and RA Roulette.</p>
+        </article>
+        <article class="ra-feature">
+          <h3>Stay connected</h3>
+          <p>Follow players, browse recent activity, read achievement comments and revisit event history.</p>
+        </article>
+        <article class="ra-feature">
+          <h3>Useful game tools</h3>
+          <p>Look up game hashes, access patch downloads, manage favorites and share detailed views.</p>
+        </article>
+        <article class="ra-feature">
+          <h3>Use it your way</h3>
+          <p>Choose a customizable interface and browse the app in 46 languages.</p>
+        </article>
+      </div>
+    </section>
 
-        // Detectar hash en la URL al cargar la página
-        function checkHashOnLoad() {
-            const hash = window.location.hash;
-            if (hash === '#privacy-policy') {
-                setTimeout(scrollToPrivacyPolicy, 1000);
-            }
-        }
+    <section class="ra-section ra-container">
+      <div class="ra-highlight">
+        <div>
+          <span class="ra-kicker">Two ways to explore</span>
+          <h2>Your achievements on mobile. Game and player details on the web.</h2>
+          <p>The mobile app helps you follow your RetroAchievements activity. You can also visit the Akissame web explorer to look up game and player information from your browser.</p>
+          <a class="ra-text-link" href="https://retroachievements.akissame.com.co/" target="_blank" rel="noopener noreferrer">Open the web explorer ↗</a>
+        </div>
+        <div class="ra-highlight-art">
+          <img src="./assets/retroachievements_logo.png" alt="" width="145" height="145" loading="lazy">
+        </div>
+      </div>
+    </section>
 
-        // Manejar cambios de hash
-        window.addEventListener('hashchange', function() {
-            if (window.location.hash === '#privacy-policy') {
-                scrollToPrivacyPolicy();
-            }
-        });
+    <section class="ra-section ra-container" id="faq">
+      <div class="ra-faq">
+        <div class="ra-faq-intro">
+          <span class="ra-kicker">Good to know</span>
+          <h2>Questions, answered.</h2>
+          <p>A few things that can help you get started with RetroAchievements and the companion app.</p>
+          <div class="ra-disclaimer"><strong>Independent project.</strong> This app is not affiliated with or endorsed by RetroAchievements.org. It uses data made available through the service's public API.</div>
+        </div>
+        <div class="ra-faq-list">
+          <details>
+            <summary>Do I need a RetroAchievements account?</summary>
+            <p>Yes. You need a free account on <a class="ra-text-link" href="https://retroachievements.org/" target="_blank" rel="noopener noreferrer">RetroAchievements.org</a> to use the service and its features.</p>
+          </details>
+          <details>
+            <summary>Does the app unlock achievements while I play?</summary>
+            <p>No. Achievement unlocking takes place through a compatible emulator connected to your RetroAchievements account. This app is a companion for browsing your profile, progress and community activity.</p>
+          </details>
+          <details>
+            <summary>How do I enable RetroAchievements in an emulator?</summary>
+            <ul>
+              <li>Open the RetroAchievements settings in a supported emulator, such as RetroArch.</li>
+              <li>Enter your RetroAchievements username and password.</li>
+              <li>Enable the RetroAchievements option.</li>
+              <li>Enable Hardcore mode if you want eligible achievements to count toward Hardcore rankings.</li>
+              <li>Restart the emulator if the settings require it.</li>
+            </ul>
+          </details>
+          <details>
+            <summary>What is Hardcore mode?</summary>
+            <p>Hardcore mode is the stricter way to earn achievements. It disables features such as save states, rewind and cheats while playing, and enables Hardcore points and leaderboard participation where supported.</p>
+          </details>
+          <details>
+            <summary>Why are my points or achievements not showing?</summary>
+            <p>Check that your emulator is connected to the correct account, Hardcore mode is enabled when required, the game is recognized correctly and your connection is working. Also make sure your emulator is up to date.</p>
+          </details>
+          <details>
+            <summary>Is the app free?</summary>
+            <p>The app is free to download and includes advertising. An optional subscription is available to remove ads. Check the store listing for the current offer and terms.</p>
+          </details>
+          <details>
+            <summary>Where can I read the privacy information?</summary>
+            <p>The app uses data from the public RetroAchievements API. Read the <a class="ra-text-link" href="https://retroachievements.org/terms" target="_blank" rel="noopener noreferrer">RetroAchievements service terms and privacy information</a>, and the app's applicable store disclosures.</p>
+          </details>
+        </div>
+      </div>
+    </section>
 
-        // Initialize
-        createStars();
-        
-        // Ejecutar al cargar la página
-        window.addEventListener('load', checkHashOnLoad);
-        
-        // También ejecutar si el DOM ya está listo
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', checkHashOnLoad);
-        } else {
-            checkHashOnLoad();
-        }
-    </script>
+    <section class="ra-section ra-container" id="support">
+      <div class="ra-section-head">
+        <span class="ra-kicker">Need a hand?</span>
+        <h2>Support for the app.</h2>
+        <p>For issues with this mobile app, contact the developer. For account, achievement or service-related questions, use the official RetroAchievements community channels.</p>
+      </div>
+      <div class="ra-support-grid">
+        <article class="ra-support-card">
+          <h3>App support</h3>
+          <p>Questions, bug reports or feedback about the App.</p>
+          <a href="mailto:retroachievements@akissame.com.co">retroachievements@akissame.com.co ↗</a>
+        </article>
+        <article class="ra-support-card">
+          <h3>RetroAchievements community</h3>
+          <p>For service accounts, achievement rules, game sets and community discussions.</p>
+          <a href="https://retroachievements.org/" target="_blank" rel="noopener noreferrer">Visit RetroAchievements.org ↗</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ra-footer">
+    <div class="ra-container ra-footer-inner">
+      <div>© 2020-<span id="ra-year">2026</span> · Akissame. All rights reserved.</div>
+      <div class="ra-footer-links">
+        <a href="https://retroachievements.org/terms">App privacy policy</a>
+      </div>
+    </div>
+  </footer>
+</div>
+<script>
+  const menuButton = document.querySelector('.ra-menu-button');
+  const navigation = document.querySelector('#ra-navigation');
+  menuButton?.addEventListener('click', () => {
+    const isOpen = navigation.classList.toggle('is-open');
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+  });
+  navigation?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navigation.classList.remove('is-open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.querySelector('#ra-year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
