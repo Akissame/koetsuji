@@ -1,300 +1,461 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6573726610779599" crossorigin="anonymous"></script>
-	<title>Akissame</title>
-	<link rel="icon" type="image/png" href="./assets/akissame_favicon.ico">
-	<link rel="stylesheet" href="./style.css">
-	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Yellowtail'>
-	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Orbitron:400,700,900'>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akissame — Steven Oliveros | Independent App Developer</title>
+  <meta name="description" content="Steven Oliveros (Akissame) — Independent developer of privacy-first, offline and gamified mobile apps. Creator of Aegis, StreamDex and RetroAchievements.">
+  <meta name="author" content="Steven Oliveros">
+  <link rel="icon" type="image/png" href="./assets/akissame_logo.png">
+  <link rel="apple-touch-icon" href="./assets/akissame_logo.png">
 
-	<style>
-		/* ── App launcher ─────────────────────────────── */
-		.app-launcher {
-			position: fixed;
-			top: 28px;
-			left: 50%;
-			transform: translateX(-50%);
-			z-index: 1000;
-			display: flex;
-			gap: 12px;
-			align-items: center;
-		}
+  <meta property="og:title" content="Akissame — Steven Oliveros">
+  <meta property="og:description" content="Independent developer of privacy-first mobile apps. Aegis, StreamDex & RetroAchievements.">
+  <meta property="og:url" content="https://akissame.com.co">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://akissame.com.co/assets/akissame_logo.png">
 
-		.app-btn {
-			display: inline-flex;
-			align-items: center;
-			gap: 10px;
-			padding: 10px 20px;
-			border-radius: 24px;
-			text-decoration: none;
-			font-family: "Orbitron", sans-serif;
-			font-size: 0.75rem;
-			font-weight: 600;
-			letter-spacing: 0.3px;
-			transition: all 0.3s ease;
-			backdrop-filter: blur(12px);
-			white-space: nowrap;
-			min-height: 42px;
-			box-sizing: border-box;
-			border: 1px solid;
-		}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;900&family=Yellowtail&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
 
-		/* Retro Achievements — magenta (identidad del juego retro) */
-		.app-btn.retro {
-			background: rgba(0, 0, 0, 0.75);
-			border-color: #ff00ff;
-			color: #ff00ff;
-		}
-
-		.app-btn.retro:hover {
-			background: rgba(255, 0, 255, 0.15);
-			color: #00ffff;
-			border-color: #00ffff;
-			box-shadow: 0 0 18px rgba(0, 255, 255, 0.4);
-			transform: translateY(-2px);
-		}
-
-		/* Aegis — azul (identidad de la app de contraseñas) */
-		.app-btn.aegis {
-			background: rgba(0, 0, 0, 0.75);
-			border-color: #3B82F6;
-			color: #3B82F6;
-		}
-
-		.app-btn.aegis:hover {
-			background: rgba(59, 130, 246, 0.15);
-			color: #26D0CE;
-			border-color: #26D0CE;
-			box-shadow: 0 0 18px rgba(38, 208, 206, 0.4);
-			transform: translateY(-2px);
-		}
-
-		.app-btn i { font-size: 14px; flex-shrink: 0; }
-
-		/* ── Responsive ───────────────────────────────── */
-		@media (max-width: 768px) {
-			.app-launcher {
-				top: 16px;
-				gap: 8px;
-				padding: 0 12px;
-				width: 100%;
-				justify-content: center;
-				left: 0;
-				transform: none;
-			}
-
-			.app-btn {
-				padding: 10px 16px;
-				font-size: 0.7rem;
-				min-height: 44px;
-				flex: 1;
-				max-width: 180px;
-				justify-content: center;
-			}
-
-			.app-btn i { font-size: 13px; }
-
-			h1 {
-				font-size: clamp(40px, 8vw, 60px) !important;
-				width: 90% !important;
-				left: 50% !important;
-				margin-left: -45% !important;
-				top: 62% !important;
-			}
-
-			h2 {
-				font-size: clamp(45px, 9vw, 65px) !important;
-				top: 62% !important;
-				margin-right: -4em !important;
-			}
-
-			#retrobg-sunWrap { width: 60% !important; margin-bottom: -10% !important; }
-			#retrobg-sun { box-shadow: 0 0 60px 45px var(--glow-color) !important; }
-			#retrobg-cityWrap { width: 80% !important; }
-			#retrobg-lines { opacity: 0.7; }
-		}
-
-		@media (max-width: 480px) {
-			.app-launcher { top: 12px; gap: 6px; }
-			.app-btn { font-size: 0.65rem; padding: 9px 12px; min-height: 42px; }
-			.app-btn span.label { display: none; }
-			.app-btn i { font-size: 16px; }
-		}
-
-		@media (max-width: 768px) and (orientation: landscape) {
-			.app-launcher { top: 10px; }
-			.app-btn { padding: 8px 14px; min-height: 36px; font-size: 0.65rem; }
-
-			h1 { top: 42% !important; font-size: clamp(30px, 6vw, 45px) !important; }
-			h2 { top: 52% !important; font-size: clamp(35px, 7vw, 50px) !important; }
-		}
-	</style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBMQXTQRRZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YBMQXTQRRZ');
+  </script>
 </head>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBMQXTQRRZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YBMQXTQRRZ');
-</script>
-
 <body>
 
-<!-- App launcher — centrado, dos apps -->
-<nav class="app-launcher">
-	<a href="/retroachievements" class="app-btn retro">
-  <img src="./assets/retroachievements_logo.png" alt="" style="width:18px;height:18px;border-radius:3px;object-fit:cover;">
-  <span class="label">Retro Achievements</span>
-</a>
-<a href="/aegis" class="app-btn aegis">
-  <img src="./assets/aegis_logo.png" alt="" style="width:18px;height:18px;border-radius:3px;object-fit:cover;">
-  <span class="label">Aegis</span>
-</a>
-</nav>
+  <!-- ─── NAV ─────────────────────────────────────────── -->
+  <header class="site-header">
+    <a href="/" class="logo">
+      <img src="./assets/akissame_logo.png" alt="Akissame" class="logo-img" width="36" height="36">
+      <span class="logo-text">Akissame</span>
+    </a>
+    <nav class="nav">
+      <a href="#apps">Apps</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-<div id="retrobg">
-	<div id="retrobg-sky">
-		<div id="retrobg-stars">
-			<div class="retrobg-star" style="left:  5%; top: 55%; transform: scale( 2 );"></div>
-			<div class="retrobg-star" style="left:  7%; top:  5%; transform: scale( 2 );"></div>
-			<div class="retrobg-star" style="left: 10%; top: 45%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 12%; top: 35%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 15%; top: 39%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 20%; top: 10%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 35%; top: 50%; transform: scale( 2 );"></div>
-			<div class="retrobg-star" style="left: 40%; top: 16%; transform: scale( 2 );"></div>
-			<div class="retrobg-star" style="left: 43%; top: 28%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 45%; top: 30%; transform: scale( 3 );"></div>
-			<div class="retrobg-star" style="left: 55%; top: 18%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 60%; top: 23%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 62%; top: 44%; transform: scale( 2 );"></div>
-			<div class="retrobg-star" style="left: 67%; top: 27%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 75%; top: 10%; transform: scale( 2 );"></div>
-			<div class="retrobg-star" style="left: 80%; top: 25%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 83%; top: 57%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 90%; top: 29%; transform: scale( 2 );"></div>
-			<div class="retrobg-star" style="left: 95%; top:  5%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 96%; top: 72%; transform: scale( 1 );"></div>
-			<div class="retrobg-star" style="left: 98%; top: 70%; transform: scale( 3 );"></div>
-		</div>
-		<div id="retrobg-sunWrap">
-			<div id="retrobg-sun"></div>
-		</div>
-		<div id="retrobg-mountains">
-			<div id="retrobg-mountains-left" class="retrobg-mountain"></div>
-			<div id="retrobg-mountains-right" class="retrobg-mountain"></div>
-		</div>
-		<div id="retrobg-cityWrap">
-			<div id="retrobg-city">
-				<div style="left:  4.0%; height: 20%; width: 3.0%;" class="retrobg-building"></div>
-				<div style="left:  6.0%; height: 50%; width: 1.5%;" class="retrobg-building"></div>
-				<div style="left:  8.0%; height: 25%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 12.0%; height: 30%; width: 3.0%;" class="retrobg-building"></div>
-				<div style="left: 13.0%; height: 55%; width: 3.0%;" class="retrobg-building retrobg-antenna"></div>
-				<div style="left: 17.0%; height: 20%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 18.5%; height: 70%; width: 1.5%;" class="retrobg-building"></div>
-				<div style="left: 20.0%; height: 30%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 21.5%; height: 80%; width: 2.0%;" class="retrobg-building retrobg-antenna"></div>
-				<div style="left: 25.0%; height: 60%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 28.0%; height: 40%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 30.0%; height: 70%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 35.0%; height: 65%; width: 4.0%;" class="retrobg-building retrobg-antenna"></div>
-				<div style="left: 38.0%; height: 40%; width: 3.0%;" class="retrobg-building"></div>
-				<div style="left: 42.0%; height: 60%; width: 2.0%;" class="retrobg-building"></div>
-				<div style="left: 43.0%; height: 85%; width: 4.0%;" class="retrobg-building retrobg-antenna"></div>
-				<div style="left: 45.0%; height: 40%; width: 3.0%;" class="retrobg-building"></div>
-				<div style="left: 48.0%; height: 25%; width: 3.0%;" class="retrobg-building"></div>
-				<div style="left: 50.0%; height: 80%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 52.0%; height: 32%; width: 5.0%;" class="retrobg-building"></div>
-				<div style="left: 55.0%; height: 55%; width: 3.0%;" class="retrobg-building retrobg-antenna"></div>
-				<div style="left: 58.0%; height: 45%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 61.0%; height: 90%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 66.0%; height: 99%; width: 4.0%;" class="retrobg-building retrobg-antenna"></div>
-				<div style="left: 69.0%; height: 30%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 73.5%; height: 90%; width: 2.0%;" class="retrobg-building"></div>
-				<div style="left: 72.0%; height: 70%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 75.0%; height: 60%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 80.0%; height: 40%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 83.0%; height: 70%; width: 4.0%;" class="retrobg-building retrobg-antenna"></div>
-				<div style="left: 87.0%; height: 60%; width: 3.0%;" class="retrobg-building retrobg-antenna"></div>
-				<div style="left: 93.0%; height: 50%; width: 3.0%;" class="retrobg-building"></div>
-				<div style="left: 91.0%; height: 30%; width: 4.0%;" class="retrobg-building"></div>
-				<div style="left: 94.0%; height: 20%; width: 3.0%;" class="retrobg-building"></div>
-				<div style="left: 98.0%; height: 35%; width: 2.0%;" class="retrobg-building"></div>
-			</div>
-		</div>
-	</div>
-	<div id="retrobg-ground">
-		<div id="retrobg-linesWrap">
-			<div id="retrobg-lines">
-				<div id="retrobg-vlines">
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div><div class="retrobg-vline"></div>
-					<div class="retrobg-vline"></div>
-				</div>
-				<div id="retrobg-hlines">
-					<div class="retrobg-hline"></div><div class="retrobg-hline"></div>
-					<div class="retrobg-hline"></div><div class="retrobg-hline"></div>
-					<div class="retrobg-hline"></div><div class="retrobg-hline"></div>
-					<div class="retrobg-hline"></div><div class="retrobg-hline"></div>
-				</div>
-			</div>
-		</div>
-		<div id="retrobg-groundShadow"></div>
-	</div>
-</div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#apps">Apps</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<div>
-	<div class="wrapper">
-		<h1>Akissame</h1>
-		<h2>Steven Oliveros</h2>
-		<svg height="320" width="400" class="logo-triangle">
-			<defs>
-				<linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
-					<stop offset="0%" style="stop-color:rgb(50,50,50);stop-opacity:1" />
-					<stop offset="100%" style="stop-color:black;stop-opacity:1" />
-				</linearGradient>
-			</defs>
-			<filter id="dropshadow" height="130%">
-				<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-				<feOffset dx="2" dy="2" result="offsetblur" />
-				<feMerge>
-					<feMergeNode/>
-					<feMergeNode in="SourceGraphic" />
-				</feMerge>
-			</filter>
-			<polygon points="0,0 400,0 200,300" stroke="#36e2f8" stroke-width="3" />
-		</svg>
-	</div>
-</div>
+  <!-- ─── HERO (original retrobg scene) ────────────────── -->
+  <section class="hero" id="top">
+    <div id="retrobg">
+      <div id="retrobg-sky">
+        <div id="retrobg-stars">
+          <div class="retrobg-star" style="left:  5%; top: 55%; transform: scale( 2 );"></div>
+          <div class="retrobg-star" style="left:  7%; top:  5%; transform: scale( 2 );"></div>
+          <div class="retrobg-star" style="left: 10%; top: 45%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 12%; top: 35%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 15%; top: 39%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 20%; top: 10%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 35%; top: 50%; transform: scale( 2 );"></div>
+          <div class="retrobg-star" style="left: 40%; top: 16%; transform: scale( 2 );"></div>
+          <div class="retrobg-star" style="left: 43%; top: 28%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 45%; top: 30%; transform: scale( 3 );"></div>
+          <div class="retrobg-star" style="left: 55%; top: 18%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 60%; top: 23%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 62%; top: 44%; transform: scale( 2 );"></div>
+          <div class="retrobg-star" style="left: 67%; top: 27%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 75%; top: 10%; transform: scale( 2 );"></div>
+          <div class="retrobg-star" style="left: 80%; top: 25%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 83%; top: 57%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 90%; top: 29%; transform: scale( 2 );"></div>
+          <div class="retrobg-star" style="left: 95%; top:  5%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 96%; top: 72%; transform: scale( 1 );"></div>
+          <div class="retrobg-star" style="left: 98%; top: 70%; transform: scale( 3 );"></div>
+        </div>
+        <div id="retrobg-sunWrap">
+          <div id="retrobg-sun"></div>
+          <button type="button" id="sun-toggle" aria-label="Toggle sunset" title="Toggle sun"></button>
+        </div>
+        <div id="retrobg-mountains">
+          <div id="retrobg-mountains-left" class="retrobg-mountain"></div>
+          <div id="retrobg-mountains-right" class="retrobg-mountain"></div>
+        </div>
+        <div id="retrobg-cityWrap">
+          <div id="retrobg-city">
+            <div style="left:  4.0%; height: 20%; width: 3.0%;" class="retrobg-building"></div>
+            <div style="left:  6.0%; height: 50%; width: 1.5%;" class="retrobg-building"></div>
+            <div style="left:  8.0%; height: 25%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 12.0%; height: 30%; width: 3.0%;" class="retrobg-building"></div>
+            <div style="left: 13.0%; height: 55%; width: 3.0%;" class="retrobg-building retrobg-antenna"></div>
+            <div style="left: 17.0%; height: 20%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 18.5%; height: 70%; width: 1.5%;" class="retrobg-building"></div>
+            <div style="left: 20.0%; height: 30%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 21.5%; height: 80%; width: 2.0%;" class="retrobg-building retrobg-antenna"></div>
+            <div style="left: 25.0%; height: 60%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 28.0%; height: 40%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 30.0%; height: 70%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 35.0%; height: 65%; width: 4.0%;" class="retrobg-building retrobg-antenna"></div>
+            <div style="left: 38.0%; height: 40%; width: 3.0%;" class="retrobg-building"></div>
+            <div style="left: 42.0%; height: 60%; width: 2.0%;" class="retrobg-building"></div>
+            <div style="left: 43.0%; height: 85%; width: 4.0%;" class="retrobg-building retrobg-antenna"></div>
+            <div style="left: 45.0%; height: 40%; width: 3.0%;" class="retrobg-building"></div>
+            <div style="left: 48.0%; height: 25%; width: 3.0%;" class="retrobg-building"></div>
+            <div style="left: 50.0%; height: 80%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 52.0%; height: 32%; width: 5.0%;" class="retrobg-building"></div>
+            <div style="left: 55.0%; height: 55%; width: 3.0%;" class="retrobg-building retrobg-antenna"></div>
+            <div style="left: 58.0%; height: 45%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 61.0%; height: 90%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 66.0%; height: 99%; width: 4.0%;" class="retrobg-building retrobg-antenna"></div>
+            <div style="left: 69.0%; height: 30%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 73.5%; height: 90%; width: 2.0%;" class="retrobg-building"></div>
+            <div style="left: 72.0%; height: 70%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 75.0%; height: 60%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 80.0%; height: 40%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 83.0%; height: 70%; width: 4.0%;" class="retrobg-building retrobg-antenna"></div>
+            <div style="left: 87.0%; height: 60%; width: 3.0%;" class="retrobg-building retrobg-antenna"></div>
+            <div style="left: 93.0%; height: 50%; width: 3.0%;" class="retrobg-building"></div>
+            <div style="left: 91.0%; height: 30%; width: 4.0%;" class="retrobg-building"></div>
+            <div style="left: 94.0%; height: 20%; width: 3.0%;" class="retrobg-building"></div>
+            <div style="left: 98.0%; height: 35%; width: 2.0%;" class="retrobg-building"></div>
+          </div>
+        </div>
+      </div>
+      <div id="retrobg-ground">
+        <div id="retrobg-linesWrap">
+          <div id="retrobg-lines">
+            <div id="retrobg-vlines">
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div><div class="retrobg-vline"></div>
+              <div class="retrobg-vline"></div>
+            </div>
+            <div id="retrobg-hlines">
+              <div class="retrobg-hline"></div><div class="retrobg-hline"></div>
+              <div class="retrobg-hline"></div><div class="retrobg-hline"></div>
+              <div class="retrobg-hline"></div><div class="retrobg-hline"></div>
+              <div class="retrobg-hline"></div><div class="retrobg-hline"></div>
+            </div>
+          </div>
+        </div>
+        <div id="retrobg-groundShadow"></div>
+      </div>
+    </div>
 
-<script src="./script.js"></script>
+    <div class="hero-content">
+      <svg class="logo-triangle" viewBox="0 0 400 320" width="280" height="224" aria-hidden="true">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:rgb(50,50,50);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:black;stop-opacity:1" />
+          </linearGradient>
+          <filter id="dropshadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+            <feOffset dx="2" dy="2" result="offsetblur" />
+            <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <polygon points="0,0 400,0 200,300" stroke="#36e2f8" stroke-width="3" fill="url(#grad1)" filter="url(#dropshadow)" />
+      </svg>
+
+      <p class="hero-eyebrow">Independent App Developer</p>
+      <h1 class="hero-title">
+        <span class="title-main">Akissame</span>
+        <span class="title-sub">Steven Oliveros</span>
+      </h1>
+    </div>
+
+    <a href="#apps" class="scroll-hint" aria-label="Scroll to apps">
+      <i class="fa-solid fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- ─── APPS ────────────────────────────────────────── -->
+  <section class="section apps" id="apps">
+    <div class="container">
+      <header class="section-header">
+        <h2 class="section-title">Apps</h2>
+        <p class="section-desc">Three focused products. Each built with a clear principle: your data stays yours.</p>
+      </header>
+
+      <div class="apps-grid">
+
+        <article class="app-card app-retro">
+          <div class="app-card-top">
+            <div class="app-icon">
+              <img src="./assets/retroachievements_logo.png" alt="RetroAchievements logo" width="56" height="56">
+            </div>
+            <div class="app-meta">
+              <h3>RetroAchievements</h3>
+              <span class="app-category">Achievement Tracker</span>
+            </div>
+          </div>
+          <p class="app-desc">
+            Full-featured companion for retroachievements.org. Track progress, missables, leaderboards, events and more.
+          </p>
+          <ul class="app-tags">
+            <li>46 languages</li>
+            <li>Leaderboards</li>
+            <li>Events</li>
+          </ul>
+          <div class="app-actions">
+            <a href="/retroachievements" class="btn btn-sm btn-primary">Learn more</a>
+            <div class="store-btns">
+              <a href="https://play.google.com/store/apps/details?id=com.akissame.retroachievements" class="btn btn-sm btn-ghost" target="_blank" rel="noopener" title="RetroAchievements — Google Play">
+                <i class="fa-brands fa-google-play"></i>
+              </a>
+              <a href="https://apps.apple.com/us/app/retro-achievements/id6751086905" class="btn btn-sm btn-ghost" target="_blank" rel="noopener" title="RetroAchievements — App Store">
+                <i class="fa-brands fa-apple"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="app-card app-streamdex">
+          <div class="app-card-top">
+            <div class="app-icon">
+              <img src="./assets/streamdex_logo.png" alt="StreamDex logo" width="56" height="56">
+            </div>
+            <div class="app-meta">
+              <h3>StreamDex</h3>
+              <span class="app-category">Streaming Index</span>
+            </div>
+          </div>
+          <p class="app-desc">
+            Your personal streaming diary. Track movies &amp; shows, earn XP, unlock achievements and discover where to watch.
+          </p>
+          <ul class="app-tags">
+            <li>Free forever</li>
+            <li>Local data</li>
+            <li>Gamification</li>
+          </ul>
+          <div class="app-actions">
+            <a href="https://streamdex.akissame.com.co" class="btn btn-sm btn-primary">Learn more</a>
+            <div class="store-btns">
+              <a href="https://play.google.com/store/apps/details?id=com.akissame.streamdex" class="btn btn-sm btn-ghost" target="_blank" rel="noopener" title="StreamDex — Google Play">
+                <i class="fa-brands fa-google-play"></i>
+              </a>
+              <a href="https://apps.apple.com/us/app/streamdex-streaming-index/id6801656425" class="btn btn-sm btn-ghost" target="_blank" rel="noopener" title="StreamDex — App Store">
+                <i class="fa-brands fa-apple"></i>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="app-card app-aegis">
+          <div class="app-card-top">
+            <div class="app-icon">
+              <img src="./assets/aegis_logo.png" alt="Aegis logo" width="56" height="56">
+            </div>
+            <div class="app-meta">
+              <h3>Aegis</h3>
+              <span class="app-category">Password Guardian</span>
+            </div>
+          </div>
+          <p class="app-desc">
+            Military-grade AES-256 password manager. 100% offline, zero servers. Your vault never leaves the device.
+          </p>
+          <ul class="app-tags">
+            <li>Offline</li>
+            <li>AES-256</li>
+            <li>No subscription</li>
+          </ul>
+          <div class="app-actions">
+            <a href="/aegis" class="btn btn-sm btn-primary">Learn more</a>
+            <div class="store-btns">
+              <a href="https://play.google.com/store/apps/details?id=com.akissame.aegis" class="btn btn-sm btn-ghost" target="_blank" rel="noopener" title="Aegis Pro — Google Play">
+                <i class="fa-brands fa-google-play"></i>
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.akissame.aegis.free" class="btn btn-sm btn-ghost" target="_blank" rel="noopener" title="Aegis Free — Google Play">
+                <i class="fa-brands fa-google-play"></i><span class="btn-extra">Free</span>
+              </a>
+              <a href="https://apps.apple.com/us/app/aegis-password-manager/id6790553158" class="btn btn-sm btn-ghost" target="_blank" rel="noopener" title="Aegis — App Store">
+                <i class="fa-brands fa-apple"></i>
+              </a>
+              <a href="https://apps.apple.com/us/app/aegis-lite-password-manager/id6799351220" class="btn btn-sm btn-ghost" target="_blank" rel="noopener" title="Aegis Lite — App Store">
+                <i class="fa-brands fa-apple"></i><span class="btn-extra">Lite</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ───────────────────────────────────────── -->
+  <section class="section about" id="about">
+    <div class="container about-grid">
+      <div class="about-content">
+        <p class="section-eyebrow">About</p>
+        <h2 class="section-title">Built independently.<br>Shipped carefully.</h2>
+        <p>
+          I'm <strong>Steven Oliveros</strong> — indie developer focused on mobile apps that respect the user. 
+          No dark patterns, no forced accounts, no data harvesting.
+        </p>
+        <p>
+          Every product starts from a clear constraint: offline-first when possible, transparent pricing, 
+          and features that actually solve a problem instead of inventing one.
+        </p>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-value">3</span>
+            <span class="stat-label">Published apps</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">2</span>
+            <span class="stat-label">Platforms</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">∞</span>
+            <span class="stat-label">Privacy focus</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-principles">
+        <h3>Principles</h3>
+        <ul>
+          <li>
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <strong>Privacy by design</strong>
+              <span>Data stays on device whenever possible</span>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-bolt"></i>
+            <div>
+              <strong>Honest pricing</strong>
+              <span>One-time purchases or free. No hidden subscriptions</span>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-gamepad"></i>
+            <div>
+              <strong>Meaningful gamification</strong>
+              <span>Progress systems that reward real engagement</span>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-code"></i>
+            <div>
+              <strong>Independent shipping</strong>
+              <span>Design, build and maintain every product myself</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─────────────────────────────────────── -->
+  <section class="section contact" id="contact">
+    <div class="container contact-inner">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-title">Let's talk</h2>
+      <p class="contact-desc">
+        Support, feedback, collaborations or just a hello — I read everything.
+      </p>
+
+      <div class="contact-cards">
+        <a href="mailto:soliveros@akissame.com.co" class="contact-card">
+          <i class="fa-solid fa-envelope"></i>
+          <span>soliveros@akissame.com.co</span>
+        </a>
+        <a href="mailto:retroachievements@akissame.com.co" class="contact-card">
+          <i class="fa-solid fa-trophy"></i>
+          <span>retroachievements@akissame.com.co</span>
+        </a>
+        <a href="mailto:aegis@akissame.com.co" class="contact-card">
+          <i class="fa-solid fa-shield"></i>
+          <span>aegis@akissame.com.co</span>
+        </a>
+        <a href="mailto:streamdex@akissame.com.co" class="contact-card">
+          <i class="fa-solid fa-clapperboard"></i>
+          <span>streamdex@akissame.com.co</span>
+        </a>
+      </div>
+
+      <div class="store-links">
+        <a href="https://play.google.com/store/apps/dev?id=4643156949664306899" class="store-btn" target="_blank" rel="noopener">
+          <i class="fa-brands fa-google-play"></i>
+          <div>
+            <span class="store-label">Google Play</span>
+            <span class="store-name">Developer page</span>
+          </div>
+        </a>
+        <a href="https://apps.apple.com/us/developer/johan-steven-oliveros-rodriguez/id1833398819" class="store-btn" target="_blank" rel="noopener">
+          <i class="fa-brands fa-apple"></i>
+          <div>
+            <span class="store-label">App Store</span>
+            <span class="store-name">Developer page</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ──────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="./assets/akissame_logo.png" alt="" width="24" height="24" class="footer-logo">
+        <span>Akissame · Steven Oliveros</span>
+      </div>
+      <div class="footer-links">
+        <a href="/retroachievements">RetroAchievements</a>
+        <a href="/aegis">Aegis</a>
+        <a href="https://streamdex.akissame.com.co">StreamDex</a>
+      </div>
+      <p class="footer-copy">© 2025–2026 Akissame. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
 </body>
 </html>
