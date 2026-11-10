@@ -2,20 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Aegis — Password Guardian</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#060B18">
+  <meta name="description" content="Aegis is a privacy-focused password manager that keeps your credentials encrypted on your device. No account or cloud vault required.">
+  <meta name="author" content="Akissame">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Akissame">
+  <meta property="og:title" content="Aegis — Private Password Manager">
+  <meta property="og:description" content="An encrypted local vault for your passwords and sensitive information. No account or cloud vault required.">
+  <meta property="og:url" content="https://akissame.com.co/aegis">
+  <meta property="og:image" content="https://akissame.com.co/assets/aegis_logo.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://akissame.com.co/aegis">
+  <title>Aegis — Private Password Manager | Akissame</title>
   <link rel="icon" type="image/png" href="./assets/aegis_favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YBMQXTQRRZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-YBMQXTQRRZ');
-  </script>
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,36 +79,6 @@
     .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
     section { position: relative; z-index: 10; }
 
-    /* ── Nav ─────────────────────────────────────── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 16px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(6,11,24,0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo-icon {
-      width: 34px; height: 34px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; color: #fff;
-    }
-    .nav-logo-name { font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; }
-    .nav-links-row { display: flex; gap: 8px; align-items: center; }
-    .nav-link {
-      padding: 8px 16px; border-radius: 20px;
-      text-decoration: none; font-size: 14px; font-weight: 500;
-      color: var(--text-sub); transition: all 0.2s; border: 1px solid transparent;
-    }
-    .nav-link:hover { color: var(--text); background: var(--surface); }
-    .nav-link.btn {
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: #fff; border-color: transparent;
-    }
-    .nav-link.btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
     /* ── Hero ─────────────────────────────────────── */
     .hero { min-height: 100vh; display: flex; align-items: center; padding: 100px 0 60px; }
@@ -483,12 +457,93 @@
       .phone-wrap { width: 220px; }
     }
     @media (max-width: 640px) {
-      nav { padding: 12px 16px; }
-      .nav-links-row .nav-link:not(.btn) { display: none; }
       .features-grid { grid-template-columns: 1fr; }
       .download-inner { padding: 36px 24px; }
       .container { padding: 0 16px; }
     }
+
+
+    /* ── Akissame-aligned header, footer and disclosures ── */
+    html { scroll-padding-top: 84px; }
+    .edition-price-label { color: var(--text); font-size: 20px; font-weight: 800; margin: 8px 0 28px; }
+    .faq-layout, .privacy-layout { display: grid; grid-template-columns: minmax(220px,.72fr) minmax(0,1.28fr); gap: 56px; align-items: start; }
+    .faq-intro, .privacy-intro { position: sticky; top: 110px; }
+    .faq-intro .section-title, .privacy-intro .section-title { margin-bottom: 14px; }
+    .faq-intro .section-subtitle, .privacy-intro .section-subtitle { margin: 0; }
+    .faq-list, .privacy-list { display: grid; gap: 10px; }
+    .faq-item, .privacy-item { padding: 0; overflow: hidden; cursor: default; }
+    .faq-item summary, .privacy-item summary {
+      list-style: none; cursor: pointer; position: relative; padding: 19px 52px 19px 22px;
+      color: var(--text); font-size: 14px; line-height: 1.5; font-weight: 700;
+    }
+    .faq-item summary::-webkit-details-marker, .privacy-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after, .privacy-item summary::after {
+      content: '+'; position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+      color: var(--primary-light); font-size: 21px; font-weight: 400;
+    }
+    .faq-item[open] summary::after, .privacy-item[open] summary::after { content: '−'; }
+    .faq-item p, .privacy-item p, .privacy-item ul { padding: 0 22px 20px; color: var(--text-sub); font-size: 13px; line-height: 1.7; }
+    .privacy-item a, .privacy-contact a { color: var(--primary-light); text-decoration: underline; text-underline-offset: 3px; }
+    .privacy-contact { margin-top: 22px; color: var(--text-muted); font-size: 13px; }
+    .privacy-item .privacy-updated { color: var(--text-muted); font-size: 12px; }
+    @media (max-width: 800px) {
+      .faq-layout, .privacy-layout { grid-template-columns: 1fr; gap: 26px; }
+      .faq-intro, .privacy-intro { position: static; }
+    }
+    /* ── Header y footer: mismo diseño que retroachievements.html ── */
+    :root { --hf-line: rgba(160, 190, 255, .15); --hf-max: 1072px; }
+    .aegis-container { width: min(var(--hf-max), calc(100% - 48px)); margin: 0 auto; }
+    .aegis-header {
+      position: fixed; inset: 0 0 auto; z-index: 100; line-height: 1.65;
+      backdrop-filter: blur(18px); background: rgba(6, 11, 24, .82);
+      border-bottom: 1px solid var(--hf-line);
+    }
+    .aegis-header-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .aegis-brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; color: var(--text); font: 700 17px "Space Grotesk", sans-serif; }
+    .aegis-brand img { width: 34px; height: 34px; object-fit: contain; image-rendering: pixelated; }
+    .aegis-brand span { color: var(--text-sub); font: 500 12px Inter, sans-serif; margin-left: 5px; }
+    .aegis-nav-links { display: flex; align-items: center; gap: 26px; }
+    .aegis-nav-links a { color: var(--text-sub); text-decoration: none; font-size: 13px; font-weight: 600; transition: color .2s; }
+    .aegis-nav-links a:hover { color: #fff; }
+    .aegis-menu-button { display: none; border: 1px solid var(--hf-line); background: var(--surface); color: #fff; border-radius: 10px; padding: 9px 12px; font: inherit; cursor: pointer; }
+    .hero { padding-top: 104px; }
+    .aegis-footer { position: relative; z-index: 10; border-top: 1px solid var(--hf-line); padding: 27px 0; color: rgba(240, 244, 255, .5); font-size: 12px; line-height: 1.65; }
+    .aegis-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .aegis-footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .aegis-footer a { color: inherit; text-decoration: none; }
+    .aegis-footer a:hover { color: #fff; }
+    @media (max-width: 720px) {
+      .aegis-container { width: min(100% - 32px, var(--hf-max)); }
+      .aegis-header-inner { min-height: 64px; }
+      .aegis-menu-button { display: inline-flex; }
+      .aegis-nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0; padding: 16px 20px 20px;
+        flex-direction: column; align-items: stretch; gap: 0; background: rgba(6, 11, 24, .98);
+        border-bottom: 1px solid var(--hf-line);
+      }
+      .aegis-nav-links.is-open { display: flex; }
+      .aegis-nav-links a { padding: 12px 4px; }
+      .aegis-brand span { display: none; }
+      .aegis-footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    .hero-text { min-width: 0; }
+    .hero-headline { display: flex; align-items: center; gap: 18px; width: max-content; margin-bottom: 20px; }
+    .hero-headline .hero-title { margin-bottom: 0; white-space: nowrap; text-align: left; }
+    .hero-logo {
+      flex: none; width: clamp(96px, 11.25vw, 144px); height: auto; aspect-ratio: 1; object-fit: contain;
+      filter: drop-shadow(0 8px 22px rgba(37, 99, 235, .3));
+    }
+    @media (max-width: 960px) { .hero-headline { margin-left: auto; margin-right: auto; } }
+    @media (max-width: 540px) {
+      .hero-headline { flex-direction: column; gap: 14px; width: auto; }
+      .hero-headline .hero-title { white-space: normal; text-align: center; }
+      .hero-logo { width: 84px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
   </style>
 </head>
 
@@ -498,19 +553,23 @@
   <div class="bg-stars" id="stars"></div>
 
   <!-- Navigation -->
-  <nav id="navbar">
-    <a href="#" class="nav-logo">
-      <img src="./assets/aegis_logo.png" alt="Aegis" style="width:34px;height:34px;border-radius:10px;object-fit:cover;">
-      <span class="nav-logo-name">Aegis</span>
-    </a>
-    <div class="nav-links-row">
-      <a href="#features" class="nav-link">Features</a>
-      <a href="#security" class="nav-link">Security</a>
-      <a href="#pricing" class="nav-link">Pricing</a>
-      <a href="#support" class="nav-link">Support</a>
-      <a href="#download" class="nav-link btn">Download</a>
+  <header class="aegis-header">
+    <div class="aegis-container aegis-header-inner">
+      <a class="aegis-brand" href="https://akissame.com.co/" aria-label="Akissame home">
+        <img src="./assets/akissame_logo.png" alt="">
+        <strong>Akissame</strong><span> / Apps</span>
+      </a>
+      <button class="aegis-menu-button" type="button" aria-expanded="false" aria-controls="aegis-navigation">Menu</button>
+      <nav class="aegis-nav-links" id="aegis-navigation" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#security">Security</a>
+        <a href="#editions">Editions</a>
+        <a href="#faq">FAQ</a>
+        <a href="#support">Support</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
     </div>
-  </nav>
+  </header>
 
   <!-- Hero -->
   <section class="hero">
@@ -519,24 +578,27 @@
         <div class="hero-text">
           <div class="hero-badge">
             <div class="dot"></div>
-            AES-256 Encryption · 100% Offline
+            Encrypted local vault · No account required
           </div>
-          <h1 class="hero-title">
-            Your passwords,<br>
-            protected by<br>
-            <span class="gradient">the gods.</span>
-          </h1>
+          <div class="hero-headline">
+            <img class="hero-logo" src="./assets/aegis_logo.png" alt="Aegis logo" width="144" height="144">
+            <h1 class="hero-title">
+              Your passwords,<br>
+              protected by<br>
+              <span class="gradient">the gods.</span>
+            </h1>
+          </div>
           <p class="hero-subtitle">
-            Aegis stores your passwords, bank cards and digital legacy with military-grade encryption — entirely on your device. No cloud, no servers, no compromises.
+            Aegis keeps your credentials in an encrypted vault on your device. Access your information without creating an account or relying on a cloud vault.
           </p>
           <div class="hero-cta">
-            <a href="#download" class="btn-primary"><i class="fas fa-download"></i> Download Free</a>
+            <a href="#editions" class="btn-primary"><i class="fas fa-download"></i> Download Free</a>
             <a href="#features" class="btn-secondary"><i class="fas fa-play"></i> See features</a>
           </div>
           <div class="hero-trust">
-            <div class="trust-item"><i class="fas fa-check-circle"></i> No internet required</div>
-            <div class="trust-item"><i class="fas fa-check-circle"></i> Zero data collection</div>
-            <div class="trust-item"><i class="fas fa-check-circle"></i> PBKDF2 key derivation</div>
+            <div class="trust-item"><i class="fas fa-check-circle"></i> Core vault works offline</div>
+            <div class="trust-item"><i class="fas fa-check-circle"></i> No account or cloud vault</div>
+            <div class="trust-item"><i class="fas fa-check-circle"></i> Encrypted local storage</div>
           </div>
         </div>
 
@@ -732,7 +794,7 @@
       <div class="section-header">
         <div class="section-label">Features</div>
         <h2 class="section-title">Everything you need,<br>nothing you don't.</h2>
-        <p class="section-subtitle">Aegis is built around one principle: your data never leaves your device. Every feature is designed around that constraint.</p>
+        <p class="section-subtitle">A practical password manager with an encrypted local vault, quick access tools and optional protections for sensitive information.</p>
       </div>
       <div class="features-grid">
         <div class="feature-card">
@@ -753,17 +815,17 @@
         <div class="feature-card">
           <div class="feature-icon" style="background:rgba(124,58,237,0.12);color:#7C3AED"><i class="fas fa-chart-bar"></i></div>
           <div class="feature-title">Security metrics</div>
-          <div class="feature-desc">Zero-knowledge analysis: detect weak, reused or old passwords. Track your security score over time.</div>
+          <div class="feature-desc">Review password strength and identify weak or reused credentials with on-device security tools.</div>
         </div>
         <div class="feature-card">
           <div class="feature-icon" style="background:rgba(239,68,68,0.12);color:#EF4444"><i class="fas fa-shield-halved"></i></div>
           <div class="feature-title">Emergency mode</div>
-          <div class="feature-desc">Activate coercion protection. The app looks normal but blocks real access — undetectable to an attacker.</div>
+          <div class="feature-desc">An additional privacy mode designed to restrict access to your vault in situations where you need extra discretion.</div>
         </div>
         <div class="feature-card">
           <div class="feature-icon" style="background:rgba(8,145,178,0.12);color:#0891B2"><i class="fas fa-scroll"></i></div>
           <div class="feature-title">Digital testament</div>
-          <div class="feature-desc">Configure posthumous access for trusted people. Generate a PDF document with encrypted credentials.</div>
+          <div class="feature-desc">Prepare information and instructions for trusted beneficiaries with an optional digital legacy document.</div>
         </div>
         <div class="feature-card">
           <div class="feature-icon" style="background:rgba(37,99,235,0.12);color:#3B82F6"><i class="fas fa-fingerprint"></i></div>
@@ -773,7 +835,7 @@
         <div class="feature-card">
           <div class="feature-icon" style="background:rgba(16,185,129,0.12);color:#10B981"><i class="fas fa-cloud-arrow-up"></i></div>
           <div class="feature-title">Encrypted backups</div>
-          <div class="feature-desc">Export your vault as an AES-256 encrypted file. Import on any device — no account needed.</div>
+          <div class="feature-desc">Create a protected backup of your vault and restore it on another device. No account required.</div>
         </div>
         <div class="feature-card">
           <div class="feature-icon" style="background:rgba(245,158,11,0.12);color:#F59E0B"><i class="fas fa-clock-rotate-left"></i></div>
@@ -791,32 +853,32 @@
         <div>
           <div class="section-label">Security</div>
           <h2 class="section-title">Built like a vault.<br>Designed like an app.</h2>
-          <p class="section-subtitle" style="margin-bottom:0">Every layer of Aegis is hardened against real-world threats — from key derivation to clipboard management.</p>
+          <p class="section-subtitle" style="margin-bottom:0">Aegis combines local encrypted storage with practical safeguards that help protect everyday use. No single feature can eliminate every security risk.</p>
         </div>
         <div class="security-badge-wrap">
           <div class="security-badge">
-            <div class="security-badge-icon" style="background:rgba(37,99,235,0.12);color:#3B82F6"><i class="fas fa-wifi-slash"></i></div>
+            <div class="security-badge-icon" style="background:rgba(37,99,235,0.12);color:#3B82F6"><i class="fas fa-mobile-screen-button"></i></div>
             <div>
-              <div class="security-badge-title">100% Offline</div>
-              <div class="security-badge-desc">No network requests. Ever. Your data never touches a server.</div>
+              <div class="security-badge-title">Local vault</div>
+              <div class="security-badge-desc">Your saved credentials stay in the vault on your device; Aegis does not provide cloud sync.</div>
             </div>
           </div>
           <div class="security-badge">
-            <div class="security-badge-icon" style="background:rgba(16,185,129,0.12);color:#10B981"><i class="fas fa-key"></i></div>
+            <div class="security-badge-icon" style="background:rgba(16,185,129,0.12);color:#10B981"><i class="fas fa-lock"></i></div>
             <div>
-              <div class="security-badge-title">AES-256-CBC + PBKDF2</div>
-              <div class="security-badge-desc">Military-grade encryption with 100,000-iteration key derivation. Brute-force resistant.</div>
+              <div class="security-badge-title">Encrypted storage</div>
+              <div class="security-badge-desc">Your vault is encrypted and protected by your master password. Use a strong, unique password.</div>
             </div>
           </div>
           <div class="security-badge">
-            <div class="security-badge-icon" style="background:rgba(245,158,11,0.12);color:#F59E0B"><i class="fas fa-clipboard-check"></i></div>
+            <div class="security-badge-icon" style="background:rgba(245,158,11,0.12);color:#F59E0B"><i class="fas fa-stopwatch"></i></div>
             <div>
               <div class="security-badge-title">Auto-clear clipboard</div>
               <div class="security-badge-desc">Copied passwords are automatically erased after 30 seconds.</div>
             </div>
           </div>
           <div class="security-badge">
-            <div class="security-badge-icon" style="background:rgba(239,68,68,0.12);color:#EF4444"><i class="fas fa-camera-slash"></i></div>
+            <div class="security-badge-icon" style="background:rgba(239,68,68,0.12);color:#EF4444"><i class="fas fa-eye-slash"></i></div>
             <div>
               <div class="security-badge-title">Screenshot blocking</div>
               <div class="security-badge-desc">FLAG_SECURE on Android and the equivalent iOS API prevent screen recording and app switcher previews.</div>
@@ -828,42 +890,41 @@
   </section>
 
   <!-- Pricing -->
-  <section id="pricing">
+  <section id="editions">
     <div class="container">
       <div class="section-header" style="text-align:center">
-        <div class="section-label">Pricing</div>
-        <h2 class="section-title">Simple, honest pricing.</h2>
-        <p class="section-subtitle" style="margin:0 auto 52px">Start free. Upgrade once. No subscriptions, no recurring fees — ever.</p>
+        <div class="section-label">Choose your edition</div>
+        <h2 class="section-title">Two ways to use Aegis.</h2>
+        <p class="section-subtitle" style="margin:0 auto 52px">Choose the version that fits your needs. Check the store listing for current availability and pricing.</p>
       </div>
       <div class="pricing-grid">
         <div class="pricing-card">
-          <div class="pricing-name">Free</div>
-          <div class="pricing-desc">The essentials for keeping your passwords safe, at no cost.</div>
-          <div class="pricing-price"><span class="pricing-amount">$0</span></div>
+          <div class="pricing-name">Aegis Lite</div>
+          <div class="pricing-desc">A free edition with advertising and the essential tools for managing your credentials.</div>
+          <div class="edition-price-label">Free to download</div>
           <ul class="pricing-features">
             <li class="check"><i class="fas fa-check"></i> Password manager</li>
             <li class="check"><i class="fas fa-check"></i> Password generator</li>
             <li class="check"><i class="fas fa-check"></i> Biometric unlock</li>
-            <li class="check"><i class="fas fa-check"></i> AES-256 encryption</li>
+            <li class="check"><i class="fas fa-check"></i> Encrypted local vault</li>
             <li class="check"><i class="fas fa-check"></i> Offline — no account needed</li>
             <li class="minus"><i class="fas fa-minus"></i> Contains ads</li>
             <li class="minus"><i class="fas fa-minus"></i> No bank cards module</li>
             <li class="minus"><i class="fas fa-minus"></i> No testament mode</li>
             <li class="minus"><i class="fas fa-minus"></i> No emergency mode</li>
           </ul>
-          <a href="#download" class="btn-secondary" style="width:100%;justify-content:center;text-decoration:none;display:flex">Download free</a>
+          <div class="edition-store-links" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <a href="https://play.google.com/store/apps/details?id=com.akissame.aegis.free" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="width:100%;justify-content:center;text-decoration:none;display:flex">Google Play</a>
+            <a href="https://apps.apple.com/us/app/aegis-lite-password-manager/id6799351220" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="width:100%;justify-content:center;text-decoration:none;display:flex">App Store</a>
+          </div>
         </div>
         <div class="pricing-card featured">
-          <div class="pricing-badge">⚡ One-time payment</div>
-          <div class="pricing-name">Pro</div>
-          <div class="pricing-desc">The full Aegis experience — every feature, no ads, forever.</div>
-          <div class="pricing-price">
-            <span class="pricing-currency">$</span>
-            <span class="pricing-amount">7.99</span>
-            <span class="pricing-period">once</span>
-          </div>
+          <div class="pricing-badge">One-time purchase</div>
+          <div class="pricing-name">Aegis</div>
+          <div class="pricing-desc">The full Aegis experience, without advertising. A one-time app purchase; no subscription.</div>
+          <div class="edition-price-label">One-time purchase</div>
           <ul class="pricing-features">
-            <li class="check"><i class="fas fa-check"></i> Everything in Free</li>
+            <li class="check"><i class="fas fa-check"></i> Full password manager</li>
             <li class="check"><i class="fas fa-check"></i> Bank cards + subscriptions</li>
             <li class="check"><i class="fas fa-check"></i> Emergency mode</li>
             <li class="check"><i class="fas fa-check"></i> Digital testament</li>
@@ -871,10 +932,13 @@
             <li class="check"><i class="fas fa-check"></i> Encrypted backups</li>
             <li class="check"><i class="fas fa-check"></i> Password history</li>
             <li class="check"><i class="fas fa-check"></i> No ads — ever</li>
-            <li class="check"><i class="fas fa-check"></i> All future updates included</li>
+            
           </ul>
-          <a href="#download" class="btn-primary" style="width:100%;justify-content:center;text-decoration:none">Get Aegis Pro</a>
-          <div class="pricing-note">Pay once. Own it forever.</div>
+          <div class="edition-store-links" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <a href="https://play.google.com/store/apps/details?id=com.akissame.aegis" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;justify-content:center;text-decoration:none">Google Play</a>
+            <a href="https://apps.apple.com/us/app/aegis-password-manager/id6790553158" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;justify-content:center;text-decoration:none">App Store</a>
+          </div>
+          <div class="pricing-note">See each store listing for the current price and terms.</div>
         </div>
       </div>
     </div>
@@ -882,36 +946,45 @@
 
   <!-- FAQ -->
   <section id="faq">
-    <div class="container">
-      <div class="section-header" style="text-align:center">
+    <div class="container faq-layout">
+      <div class="faq-intro">
         <div class="section-label">FAQ</div>
-        <h2 class="section-title">Common questions.</h2>
+        <h2 class="section-title">Good to know.</h2>
+        <p class="section-subtitle">Straightforward answers about your vault, backups and the way Aegis works.</p>
       </div>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <div class="faq-q">Does Aegis store my data in the cloud? <i class="fas fa-chevron-right"></i></div>
-          <div class="faq-a">No. All data is stored exclusively on your device, encrypted with your master password. No servers, no accounts, no internet required.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">What happens if I forget my master password? <i class="fas fa-chevron-right"></i></div>
-          <div class="faq-a">There is no recovery option by design — nobody can access your data without it. You can reset the app, which clears all data and lets you start fresh.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Can I transfer my vault to a new phone? <i class="fas fa-chevron-right"></i></div>
-          <div class="faq-a">Yes. Use the Backup feature to export your encrypted vault, share it to your new device, and import it using the same password.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">What is Emergency Mode? <i class="fas fa-chevron-right"></i></div>
-          <div class="faq-a">A coercion protection feature. When active, the app appears to work normally but blocks all real data access. Only a secret tap sequence you configure can disable it.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">Is the one-time payment per platform? <i class="fas fa-chevron-right"></i></div>
-          <div class="faq-a">The free and pro versions are separate apps. Each platform (Android/iOS) has its own purchase — this is standard for paid apps on the App Store and Google Play.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q">What is the Digital Testament? <i class="fas fa-chevron-right"></i></div>
-          <div class="faq-a">A feature that lets you configure a posthumous password and generate a PDF for trusted beneficiaries, giving them read-only access to your credentials after your passing.</div>
-        </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Does Aegis store my data in the cloud?</summary>
+          <p>No. Your vault is stored locally on your device. Aegis does not provide an account-based cloud vault or automatic cloud synchronisation.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What happens if I forget my master password?</summary>
+          <p>Your master password is essential to access your vault. There is no password-reset service that can recover it for you. Keep a secure backup and make sure you can remember your master password before relying on Aegis as your only copy.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I move my vault to another device?</summary>
+          <p>Use Aegis's backup and restore options to transfer your vault. Keep the backup file somewhere secure and follow the app's instructions when importing it on the new device.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does Aegis work without an internet connection?</summary>
+          <p>The core vault is designed for offline use. Internet access may still be needed for store services and, in the Lite edition, advertising.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is Emergency Mode?</summary>
+          <p>Emergency Mode is an additional privacy feature available in the paid edition. Review its in-app setup instructions carefully before enabling it, so you understand how to activate and deactivate it.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Are Aegis Lite and Aegis the same app?</summary>
+          <p>They are separate editions. Aegis Lite is free and ad-supported; the paid Aegis edition removes advertising and includes the additional features listed above. Check each store listing for platform-specific availability.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does Aegis have access to my fingerprint or Face ID data?</summary>
+          <p>Biometric verification is handled through the device's operating-system authentication features. Aegis does not need access to raw fingerprint or face images.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is the Digital Testament?</summary>
+          <p>The Digital Testament is an optional feature in the paid edition intended to help you prepare instructions and credential information for trusted beneficiaries. Read its in-app explanation carefully and plan how the generated document will be stored and shared.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -934,13 +1007,13 @@
           <div class="support-card-icon" style="background:rgba(16,185,129,0.12);color:#10B981"><i class="fab fa-google-play"></i></div>
           <div class="support-card-title">Google Play</div>
           <div class="support-card-desc">Rate, review or report an issue on the Play Store listing.</div>
-          <a href="https://play.google.com/store/apps/details?id=com.akissame.aegis" class="support-link" target="_blank">View on Play Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.akissame.aegis" class="support-link" target="_blank" rel="noopener noreferrer">View Aegis on Play Store</a>
         </div>
         <div class="support-card">
           <div class="support-card-icon" style="background:rgba(124,58,237,0.12);color:#7C3AED"><i class="fab fa-apple"></i></div>
           <div class="support-card-title">App Store</div>
           <div class="support-card-desc">Rate, review or report an issue on the App Store listing.</div>
-          <a href="https://apps.apple.com/app/aegis" class="support-link" target="_blank">View on App Store</a>
+          <a href="https://apps.apple.com/us/app/aegis-password-manager/id6790553158" class="support-link" target="_blank" rel="noopener noreferrer">View Aegis on App Store</a>
         </div>
       </div>
     </div>
@@ -948,82 +1021,60 @@
 
   <!-- Privacy Policy -->
   <section id="privacy">
-    <div class="container">
-      <div class="section-header" style="text-align:center">
+    <div class="container privacy-layout">
+      <div class="privacy-intro">
         <div class="section-label">Privacy</div>
-        <h2 class="section-title">Privacy policy</h2>
+        <h2 class="section-title">Your vault stays yours.</h2>
+        <p class="section-subtitle">A concise overview of how Aegis handles information. The details can vary between the Lite and paid editions and between platform providers.</p>
+        <p class="privacy-contact">Questions? <a href="mailto:aegis@akissame.com.co">Contact Aegis support</a>.</p>
       </div>
-      <div class="privacy-box">
-        <h3>My commitment</h3>
-        <p>Aegis was designed with a single principle: your data belongs to you, and only to you. The app works entirely offline and never transmits any information to external servers.</p>
-
-        <h3>Data I do NOT collect</h3>
-        <ul>
-          <li>Passwords, PINs or any credential you store</li>
-          <li>Bank card numbers or financial information</li>
-          <li>Personal identifiable information</li>
-          <li>Usage analytics or behavioral data</li>
-          <li>Device identifiers</li>
-          <li>Location data</li>
-        </ul>
-
-        <h3>Data stored on your device</h3>
-        <p>All data you enter is encrypted with AES-256-CBC using a key derived exclusively from your master password via PBKDF2-HMAC-SHA256 (100,000 iterations). This encrypted data is stored locally in a SQLite database on your device. It is never uploaded, synced or transmitted anywhere.</p>
-
-        <h3>Biometric data</h3>
-        <p>When you enable fingerprint or Face ID access, your master password is stored in your device's secure enclave (Android Keystore / iOS Keychain). Aegis never handles raw biometric data — all biometric processing is done by the operating system.</p>
-
-        <h3>Ads (Free version only)</h3>
-        <p>The free version of Aegis displays ads through Google AdMob. AdMob may collect anonymized data as described in Google's privacy policy. The Pro version contains no ads and no third-party SDKs that collect data.</p>
-
-        <h3>Backups</h3>
-        <p>When you create a backup, the resulting file is encrypted before it leaves the app. You are responsible for where you store or share this file. Aegis does not upload backups anywhere.</p>
-
-        <h3>Contact</h3>
-        <p>If you have questions about this privacy policy, contact me at: <strong style="color:var(--primary-light)">aegis@akissame.com.co</strong></p>
-        <p style="margin-top:24px;font-size:12px;color:var(--text-muted)">Last updated: March 2026</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Download CTA -->
-  <section id="download" class="download-banner">
-    <div class="container">
-      <div class="download-inner">
-        <h2 class="download-title">Your passwords deserve a guardian.</h2>
-        <p class="download-subtitle">Download Aegis free. Upgrade once. Yours forever.</p>
-        <div class="download-btns">
-          <a href="#" class="store-btn google" target="_blank">
-            <i class="fab fa-google-play" style="color:#34A853"></i>
-            <div class="store-btn-label"><small>Get it on</small><strong>Google Play</strong></div>
-          </a>
-          <a href="#" class="store-btn apple" target="_blank">
-            <i class="fab fa-apple"></i>
-            <div class="store-btn-label"><small>Download on the</small><strong>App Store</strong></div>
-          </a>
-        </div>
+      <div class="privacy-list">
+        <details class="privacy-item">
+          <summary>Vault data and local storage</summary>
+          <p>Credentials and other information you save in Aegis are stored in an encrypted vault on your device. Aegis does not operate a cloud vault or account service for storing or synchronising that information.</p>
+        </details>
+        <details class="privacy-item">
+          <summary>Encryption and access</summary>
+          <p>Your vault is protected by the app's encryption and authentication mechanisms. Keep your master password private, use a strong password and maintain a secure backup. Do not rely on this summary as a substitute for the technical and security information supplied with the current app version.</p>
+        </details>
+        <details class="privacy-item">
+          <summary>Biometric authentication</summary>
+          <p>If you enable biometric unlock, authentication is performed using the operating system's supported biometric facilities. Aegis does not receive raw fingerprint or face images.</p>
+        </details>
+        <details class="privacy-item">
+          <summary>Advertising in Aegis Lite</summary>
+          <p>The Lite edition displays ads through Google AdMob. Advertising providers may process device or advertising information under their own policies and settings. The paid Aegis edition is intended to provide an ad-free experience.</p>
+          <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</p>
+        </details>
+        <details class="privacy-item">
+          <summary>Backups and exported files</summary>
+          <p>When you create a backup, you control where the resulting file is saved or shared. Protect backup files as carefully as your master password and avoid sending them through channels you do not trust.</p>
+        </details>
+        <details class="privacy-item">
+          <summary>Permissions and device data</summary>
+          <p>Aegis may request device permissions to support features you choose to use. Permission availability and platform disclosures can differ between Android and iOS. Review the permission prompts and the applicable store privacy disclosures on your device.</p>
+        </details>
+        <details class="privacy-item">
+          <summary>Children's privacy</summary>
+          <p>Aegis is a general-purpose password manager and is not designed to collect personal information from children. Parents and guardians should review the applicable store age ratings and platform privacy information.</p>
+        </details>
+        <details class="privacy-item">
+          <summary>Policy updates and contact</summary>
+          <p>This information may be updated as Aegis changes. For questions about the app or this privacy summary, email <a href="mailto:aegis@akissame.com.co">aegis@akissame.com.co</a>.</p>
+          <p class="privacy-updated">Last reviewed: November 2026</p>
+        </details>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div class="footer-logo">
-      <img src="./assets/aegis_logo.png" alt="Aegis" style="width:34px;height:34px;border-radius:10px;object-fit:cover;">
-      <span class="footer-logo-name">Aegis</span>
+  <footer class="aegis-footer">
+    <div class="aegis-container aegis-footer-inner">
+      <div>© 2020-<span id="aegis-year">2026</span> · Akissame. All rights reserved.</div>
+      <nav class="aegis-footer-links" aria-label="Footer navigation">
+        <a href="mailto:aegis@akissame.com.co">Contact</a>
+      </nav>
     </div>
-    <p class="footer-tagline">Protected by the gods.</p>
-    <div class="footer-links">
-      <a href="#features">Features</a>
-      <a href="#security">Security</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="#privacy">Privacy policy</a>
-      <a href="#support">Support</a>
-      <a href="mailto:aegis@akissame.com.co">Contact</a>
-      <a href="https://akissame.com.co">Akissame</a>
-    </div>
-    <p class="footer-copy">© 2026 Akissame — Steven Oliveros. All rights reserved.</p>
   </footer>
 
   <script>
@@ -1036,9 +1087,17 @@
     container.appendChild(s);
   }
 
-  const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    nav.style.background = window.scrollY > 40 ? 'rgba(6,11,24,0.95)' : 'rgba(6,11,24,0.8)';
+  const menuButton = document.querySelector('.aegis-menu-button');
+  const navigation = document.querySelector('#aegis-navigation');
+  menuButton?.addEventListener('click', () => {
+    const isOpen = navigation.classList.toggle('is-open');
+    menuButton.setAttribute('aria-expanded', String(isOpen));
+  });
+  navigation?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navigation.classList.remove('is-open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+    });
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -1058,11 +1117,14 @@
       hour: '2-digit',
       minute: '2-digit'
     });
-    document.getElementById('time').textContent = formatted;
+    const time = document.getElementById('time');
+    if (time) time.textContent = formatted;
   }
 
   updateTime();
   setInterval(updateTime, 60000);
+  const year = document.getElementById('aegis-year');
+  if (year) year.textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
