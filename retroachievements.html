@@ -17,6 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       color-scheme: dark;
@@ -31,240 +32,770 @@
       --ra-line: rgba(218, 185, 255, .15);
       --ra-max: 1160px;
     }
+
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
     body {
-      margin: 0; background: var(--ra-bg); color: var(--ra-text);
-      font-family: Inter, system-ui, sans-serif; line-height: 1.65;
+      margin: 0;
+      background: var(--ra-bg);
+      color: var(--ra-text);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.65;
       overflow-x: hidden;
     }
+
     a { color: inherit; }
-    .ra-shell { min-height: 100vh; position: relative; isolation: isolate; }
+
+    .ra-shell {
+      min-height: 100vh;
+      position: relative;
+      isolation: isolate;
+    }
+
     .ra-shell::before {
-      content: ""; position: absolute; z-index: -2; inset: 0 0 auto; height: 760px;
+      content: "";
+      position: absolute;
+      z-index: -2;
+      inset: 0 0 auto;
+      height: 760px;
       background:
         radial-gradient(ellipse at 50% 0%, rgba(151, 55, 221, .30), transparent 55%),
         radial-gradient(ellipse at 12% 36%, rgba(255, 75, 164, .10), transparent 35%),
         linear-gradient(180deg, #1b1030 0%, #100b1d 78%, var(--ra-bg) 100%);
       pointer-events: none;
     }
-    .ra-container { width: min(var(--ra-max), calc(100% - 48px)); margin: 0 auto; }
-    .ra-nav {
-      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px);
-      background: rgba(13, 10, 22, .82); border-bottom: 1px solid var(--ra-line);
+
+    .ra-container {
+      width: min(var(--ra-max), calc(100% - 48px));
+      margin: 0 auto;
     }
-    .ra-nav-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .ra-brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font: 700 17px "Space Grotesk", sans-serif; }
-    .ra-brand img { width: 34px; height: 34px; object-fit: contain; image-rendering: pixelated; }
-    .ra-brand span { color: var(--ra-muted); font: 500 12px Inter, sans-serif; margin-left: 5px; }
-    .ra-nav-links { display: flex; align-items: center; gap: 26px; }
-    .ra-nav-links a { color: var(--ra-muted); text-decoration: none; font-size: 13px; font-weight: 600; transition: color .2s; }
+
+    .ra-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(13, 10, 22, .82);
+      border-bottom: 1px solid var(--ra-line);
+    }
+
+    .ra-nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .ra-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font: 700 17px "Space Grotesk", sans-serif;
+    }
+
+    .ra-brand img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+    .ra-brand span {
+      color: var(--ra-muted);
+      font: 500 12px Inter, sans-serif;
+      margin-left: 5px;
+    }
+
+    .ra-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .ra-nav-links a {
+      color: var(--ra-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color .2s;
+    }
+
     .ra-nav-links a:hover { color: white; }
     .ra-nav-links .ra-home { color: #e5c9ff; }
-    .ra-menu-button { display: none; border: 1px solid var(--ra-line); background: var(--ra-panel); color: white; border-radius: 10px; padding: 9px 12px; font: inherit; }
-    .ra-hero { padding: 60px 0 78px; text-align: center; position: relative; }
-    .ra-eyebrow {
-      display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px;
-      border: 1px solid rgba(202, 144, 255, .28); border-radius: 999px;
-      background: rgba(124, 58, 237, .12); color: #e4c5ff; font-size: 11px;
-      font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+
+    .ra-menu-button {
+      display: none;
+      border: 1px solid var(--ra-line);
+      background: var(--ra-panel);
+      color: white;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font: inherit;
     }
-    .ra-eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ra-gold); box-shadow: 0 0 12px var(--ra-gold); }
+
+    .ra-hero {
+      padding: 60px 0 78px;
+      text-align: center;
+      position: relative;
+    }
+
+    .ra-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 12px;
+      border: 1px solid rgba(202, 144, 255, .28);
+      border-radius: 999px;
+      background: rgba(124, 58, 237, .12);
+      color: #e4c5ff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .ra-eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ra-gold);
+      box-shadow: 0 0 12px var(--ra-gold);
+    }
+
     .ra-hero-logo {
-      width: clamp(112px, 16vw, 164px); aspect-ratio: 1; object-fit: contain;
-      image-rendering: pixelated; margin: 25px auto 13px; display: block;
+      width: clamp(112px, 16vw, 164px);
+      aspect-ratio: 1;
+      object-fit: contain;
+      image-rendering: pixelated;
+      margin: 25px auto 13px;
+      display: block;
       filter: drop-shadow(0 12px 32px rgba(231, 85, 218, .18));
     }
-    h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; line-height: 1.12; }
-    .ra-hero h1 { max-width: 850px; margin: 0 auto; font-size: clamp(38px, 6vw, 68px); letter-spacing: -.055em; }
-    .ra-gradient-text { background: linear-gradient(95deg, #fff 15%, #e7baff 52%, #ffbd68 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
-    .ra-hero-copy { max-width: 690px; margin: 22px auto 0; color: var(--ra-muted); font-size: clamp(15px, 1.7vw, 18px); }
-    .ra-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-    .ra-store {
-      min-height: 49px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 0 19px; border-radius: 12px; text-decoration: none; font-size: 13px; font-weight: 800;
-      border: 1px solid transparent; transition: transform .2s, border-color .2s, background .2s;
+
+    h1, h2, h3 {
+      font-family: "Space Grotesk", Inter, sans-serif;
+      line-height: 1.12;
     }
+
+    .ra-hero h1 {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: clamp(38px, 6vw, 68px);
+      letter-spacing: -.055em;
+    }
+
+    .ra-gradient-text {
+      background: linear-gradient(95deg, #fff 15%, #e7baff 52%, #ffbd68 100%);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .ra-hero-copy {
+      max-width: 690px;
+      margin: 22px auto 0;
+      color: var(--ra-muted);
+      font-size: clamp(15px, 1.7vw, 18px);
+    }
+
+    .ra-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .ra-store {
+      min-height: 49px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 19px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform .2s, border-color .2s, background .2s;
+    }
+
     .ra-store:hover { transform: translateY(-2px); }
-    .ra-store-primary { color: #170d22; background: linear-gradient(110deg, #ffd36e, #ff9c67); box-shadow: 0 9px 30px rgba(255, 163, 94, .16); }
-    .ra-store-secondary { color: white; background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.17); }
-    .ra-store svg { width: 19px; height: 19px; fill: currentColor; }
-    .ra-hero-note { margin: 16px 0 0; color: #9185a4; font-size: 11px; }
+
+    .ra-store-primary {
+      color: #170d22;
+      background: linear-gradient(110deg, #ffd36e, #ff9c67);
+      box-shadow: 0 9px 30px rgba(255, 163, 94, .16);
+    }
+
+    .ra-store-secondary {
+      color: white;
+      background: rgba(255,255,255,.055);
+      border-color: rgba(255,255,255,.17);
+    }
+
+    .ra-store svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    .ra-hero-note {
+      margin: 16px 0 0;
+      color: #9185a4;
+      font-size: 11px;
+    }
+
     .ra-section { padding: 76px 0; }
-    .ra-section-head { max-width: 690px; margin-bottom: 30px; }
-    .ra-kicker { color: #d18aff; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-    .ra-section h2 { margin: 10px 0 12px; font-size: clamp(29px, 4vw, 43px); letter-spacing: -.04em; }
-    .ra-section-head p { margin: 0; color: var(--ra-muted); }
-    .ra-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+
+    .ra-section-head {
+      max-width: 690px;
+      margin-bottom: 30px;
+    }
+
+    .ra-kicker {
+      color: #d18aff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .ra-section h2 {
+      margin: 10px 0 12px;
+      font-size: clamp(29px, 4vw, 43px);
+      letter-spacing: -.04em;
+    }
+
+    .ra-section-head p {
+      margin: 0;
+      color: var(--ra-muted);
+    }
+
+    .ra-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
     .ra-feature {
-      min-height: 120px; padding: 23px; border: 1px solid var(--ra-line); border-radius: 17px;
+      min-height: 120px;
+      padding: 23px;
+      border: 1px solid var(--ra-line);
+      border-radius: 17px;
       background: linear-gradient(145deg, rgba(35, 25, 52, .92), rgba(20, 15, 30, .92));
       transition: transform .2s, border-color .2s;
     }
-    .ra-feature:hover { transform: translateY(-4px); border-color: rgba(207, 139, 255, .48); }
-    .ra-feature-icon {
-      width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px;
-      color: var(--ra-gold); background: rgba(255, 194, 71, .10); font-size: 19px;
+
+    .ra-feature:hover {
+      transform: translateY(-4px);
+      border-color: rgba(207, 139, 255, .48);
     }
-    .ra-feature h3 { margin: 0 0 9px; font-size: 17px; }
-    .ra-feature p { color: var(--ra-muted); font-size: 13px; margin: 0; }
+
+    .ra-feature-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--ra-gold);
+      background: rgba(255, 194, 71, .10);
+      font-size: 19px;
+    }
+
+    .ra-feature h3 {
+      margin: 0 0 9px;
+      font-size: 17px;
+    }
+
+    .ra-feature p {
+      color: var(--ra-muted);
+      font-size: 13px;
+      margin: 0;
+    }
+
     .ra-highlight {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;
-      padding: 34px; border-radius: 22px; border: 1px solid rgba(190, 125, 255, .25);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      padding: 34px;
+      border-radius: 22px;
+      border: 1px solid rgba(190, 125, 255, .25);
       background: radial-gradient(ellipse at 100% 0%, rgba(156, 71, 215, .19), transparent 55%), var(--ra-panel);
     }
-    .ra-highlight h2 { margin: 9px 0 14px; font-size: clamp(28px, 3.7vw, 40px); }
-    .ra-highlight p { color: var(--ra-muted); margin: 0 0 19px; }
-    .ra-text-link { color: #e6bdff; font-size: 13px; font-weight: 800; text-decoration: none; }
+
+    .ra-highlight h2 {
+      margin: 9px 0 14px;
+      font-size: clamp(28px, 3.7vw, 40px);
+    }
+
+    .ra-highlight p {
+      color: var(--ra-muted);
+      margin: 0 0 19px;
+    }
+
+    .ra-text-link {
+      color: #e6bdff;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
     .ra-text-link:hover { text-decoration: underline; }
+
     .ra-highlight-art {
-      min-height: 240px; border-radius: 16px; display: grid; place-items: center; overflow: hidden;
+      min-height: 240px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
       background:
         radial-gradient(circle at 50% 45%, rgba(244, 111, 193, .25), transparent 45%),
         linear-gradient(145deg, #2b1b42, #151020);
       border: 1px solid rgba(255,255,255,.08);
     }
-    .ra-highlight-art img { width: 145px; height: 145px; image-rendering: pixelated; object-fit: contain; filter: drop-shadow(0 12px 25px rgba(0,0,0,.35)); }
-    .ra-disclaimer { padding: 19px 21px; border-left: 3px solid var(--ra-gold); background: rgba(255, 194, 71, .07); border-radius: 0 12px 12px 0; color: #d5c9df; font-size: 13px; }
+
+    .ra-highlight-art img {
+      width: 145px;
+      height: 145px;
+      image-rendering: pixelated;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 25px rgba(0,0,0,.35));
+    }
+
+    .ra-disclaimer {
+      padding: 19px 21px;
+      border-left: 3px solid var(--ra-gold);
+      background: rgba(255, 194, 71, .07);
+      border-radius: 0 12px 12px 0;
+      color: #d5c9df;
+      font-size: 13px;
+    }
+
     .ra-disclaimer strong { color: white; }
-    .ra-faq { display: grid; grid-template-columns: .75fr 1.25fr; gap: 48px; align-items: start; }
+
+    .ra-faq {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 48px;
+      align-items: start;
+    }
+
     .ra-faq-intro p { color: var(--ra-muted); }
-    .ra-faq-list { display: grid; gap: 10px; }
-    .ra-faq details { border: 1px solid var(--ra-line); border-radius: 13px; background: rgba(28, 21, 41, .72); }
-    .ra-faq summary { cursor: pointer; list-style: none; padding: 17px 19px; font-size: 14px; font-weight: 700; }
+
+    .ra-faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .ra-faq details {
+      border: 1px solid var(--ra-line);
+      border-radius: 13px;
+      background: rgba(28, 21, 41, .72);
+    }
+
+    .ra-faq summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 17px 19px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
     .ra-faq summary::-webkit-details-marker { display: none; }
-    .ra-faq summary::after { content: "+"; float: right; color: var(--ra-gold); font-size: 18px; line-height: 1; }
+
+    .ra-faq summary::after {
+      content: "+";
+      float: right;
+      color: var(--ra-gold);
+      font-size: 18px;
+      line-height: 1;
+    }
+
     .ra-faq details[open] summary::after { content: "−"; }
-    .ra-faq details p, .ra-faq details ul { color: var(--ra-muted); font-size: 13px; margin: 0; padding: 0 19px 18px; }
+
+    .ra-faq details p,
+    .ra-faq details ul {
+      color: var(--ra-muted);
+      font-size: 13px;
+      margin: 0;
+      padding: 0 19px 18px;
+    }
+
     .ra-faq details ul { padding-left: 39px; }
-    .ra-support-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-    .ra-support-card { padding: 25px; border: 1px solid var(--ra-line); border-radius: 16px; background: var(--ra-panel); }
-    .ra-support-card h3 { margin: 0 0 10px; font-size: 18px; }
-    .ra-support-card p { color: var(--ra-muted); font-size: 13px; margin: 0 0 14px; }
-    .ra-support-card a { color: #e6bdff; font-size: 13px; font-weight: 700; text-decoration: none; }
-    .ra-footer { border-top: 1px solid var(--ra-line); padding: 27px 0; color: #9489a4; font-size: 12px; }
-    .ra-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .ra-footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+
+    /* App privacy section */
+    .ra-privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .ra-privacy-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 23px;
+      border: 1px solid var(--ra-line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(35, 25, 52, .92), rgba(20, 15, 30, .92));
+    }
+
+    .ra-privacy-number {
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      color: var(--ra-gold);
+      background: rgba(255, 194, 71, .10);
+      font: 700 13px "Space Grotesk", sans-serif;
+    }
+
+    .ra-privacy-card h3 {
+      margin: 2px 0 7px;
+      font-size: 16px;
+    }
+
+    .ra-privacy-card p {
+      margin: 0;
+      color: var(--ra-muted);
+      font-size: 13px;
+    }
+
+    .ra-privacy-note {
+      margin-top: 18px;
+      padding: 20px 22px;
+      border: 1px solid rgba(190, 125, 255, .25);
+      border-radius: 15px;
+      background: rgba(124, 58, 237, .08);
+      color: var(--ra-muted);
+      font-size: 13px;
+    }
+
+    .ra-privacy-note p { margin: 0 0 9px; }
+    .ra-privacy-note p:last-child { margin-bottom: 0; }
+
+    .ra-privacy-note a {
+      color: #e6bdff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .ra-privacy-note a:hover { text-decoration: underline; }
+
+    .ra-support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .ra-support-card {
+      padding: 25px;
+      border: 1px solid var(--ra-line);
+      border-radius: 16px;
+      background: var(--ra-panel);
+    }
+
+    .ra-support-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .ra-support-card p {
+      color: var(--ra-muted);
+      font-size: 13px;
+      margin: 0 0 14px;
+    }
+
+    .ra-support-card a {
+      color: #e6bdff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .ra-footer {
+      border-top: 1px solid var(--ra-line);
+      padding: 27px 0;
+      color: #9489a4;
+      font-size: 12px;
+    }
+
+    .ra-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .ra-footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
     .ra-footer a { text-decoration: none; }
     .ra-footer a:hover { color: white; }
+
     @media (max-width: 800px) {
       .ra-feature-grid { grid-template-columns: repeat(2, 1fr); }
       .ra-faq { grid-template-columns: 1fr; gap: 20px; }
       .ra-highlight { gap: 22px; padding: 25px; }
     }
+
     @media (max-width: 600px) {
       .ra-container { width: min(100% - 32px, var(--ra-max)); }
       .ra-nav-inner { min-height: 64px; }
       .ra-menu-button { display: inline-flex; }
+
       .ra-nav-links {
-        display: none; position: absolute; top: 64px; left: 0; right: 0; padding: 16px 20px 20px;
-        flex-direction: column; align-items: stretch; gap: 0; background: rgba(13,10,22,.98);
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        padding: 16px 20px 20px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: rgba(13,10,22,.98);
         border-bottom: 1px solid var(--ra-line);
       }
+
       .ra-nav-links.is-open { display: flex; }
       .ra-nav-links a { padding: 12px 4px; }
       .ra-brand span { display: none; }
       .ra-hero { padding: 62px 0 55px; }
       .ra-hero-logo { width: 112px; margin-top: 21px; }
       .ra-section { padding: 55px 0; }
-      .ra-feature-grid, .ra-support-grid, .ra-highlight { grid-template-columns: 1fr; }
+
+      .ra-feature-grid,
+      .ra-support-grid,
+      .ra-privacy-grid,
+      .ra-highlight {
+        grid-template-columns: 1fr;
+      }
+
       .ra-feature { min-height: 0; }
       .ra-highlight-art { min-height: 180px; }
       .ra-highlight-art img { width: 112px; height: 112px; }
       .ra-footer-inner { align-items: flex-start; flex-direction: column; }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
+
 <body>
 <div class="ra-shell">
+
   <header class="ra-nav">
     <div class="ra-container ra-nav-inner">
       <a class="ra-brand" href="/" aria-label="Akissame home">
         <img src="./assets/akissame_logo.png" alt="">
         <strong>Akissame</strong><span> / Apps</span>
       </a>
-      <button class="ra-menu-button" type="button" aria-expanded="false" aria-controls="ra-navigation">Menu</button>
+
+      <button
+        class="ra-menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="ra-navigation">
+        Menu
+      </button>
+
       <nav class="ra-nav-links" id="ra-navigation" aria-label="Main navigation">
         <a href="#features">Features</a>
         <a href="#faq">FAQ</a>
+        <a href="#privacy">Privacy</a>
         <a href="#support">Support</a>
       </nav>
     </div>
   </header>
 
   <main>
+
     <section class="ra-hero ra-container">
       <span class="ra-eyebrow">A companion app for retro players</span>
-      <img class="ra-hero-logo" src="./assets/retroachievements_logo.png" alt="RetroAchievements trophy logo" width="164" height="164">
-      <h1><span class="ra-gradient-text">Your retro gaming journey,</span><br>all in one place.</h1>
-      <p class="ra-hero-copy">Keep an eye on your achievements, follow other players, compare progress and discover what's happening across the RetroAchievements community.</p>
+
+      <img
+        class="ra-hero-logo"
+        src="./assets/retroachievements_logo.png"
+        alt="RetroAchievements trophy logo"
+        width="164"
+        height="164">
+
+      <h1>
+        <span class="ra-gradient-text">Your retro gaming journey,</span><br>
+        all in one place.
+      </h1>
+
+      <p class="ra-hero-copy">
+        Keep an eye on your achievements, follow other players, compare progress
+        and discover what's happening across the RetroAchievements community.
+      </p>
+
       <div class="ra-actions">
-        <a class="ra-store ra-store-primary" href="https://play.google.com/store/apps/details?id=com.akissame.retroachievements" target="_blank" rel="noopener noreferrer" aria-label="Get RetroAchievements on Google Play">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.7c-.4.4-.6 1-.6 1.8v15c0 .8.2 1.4.6 1.8L12 12 3.6 2.7zm9.5 8.4 2.2-2.2L5.1 2.5l8 8.6zm0 1.8-8 8.6 10.2-6.4-2.2-2.2zm3.2-3.2L14 12l2.3 2.3 3.1-1.9c1-.6 1-1.5 0-2.1l-3.1-1.9z"/></svg>
+        <a
+          class="ra-store ra-store-primary"
+          href="https://play.google.com/store/apps/details?id=com.akissame.retroachievements"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Get RetroAchievements on Google Play">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3.6 2.7c-.4.4-.6 1-.6 1.8v15c0 .8.2 1.4.6 1.8L12 12 3.6 2.7zm9.5 8.4 2.2-2.2L5.1 2.5l8 8.6zm0 1.8-8 8.6 10.2-6.4-2.2-2.2zm3.2-3.2L14 12l2.3 2.3 3.1-1.9c1-.6 1-1.5 0-2.1l-3.1-1.9z"/>
+          </svg>
+
           Google Play
         </a>
-        <a class="ra-store ra-store-secondary" href="https://apps.apple.com/app/retro-achievements/id6751086905" target="_blank" rel="noopener noreferrer" aria-label="Download RetroAchievements on the App Store">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.7 12.8c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.8-.4 6.9 1.1 9.1.7 1.1 1.5 2.3 2.6 2.2 1-.1 1.4-.7 2.7-.7s1.7.7 2.8.7c1.2 0 1.9-1.1 2.6-2.2.8-1.2 1.1-2.4 1.1-2.4s-2.5-1-2.5-4zm-2.2-6.4c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3z"/></svg>
+
+        <a
+          class="ra-store ra-store-secondary"
+          href="https://apps.apple.com/app/retro-achievements/id6751086905"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Download RetroAchievements on the App Store">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16.7 12.8c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8-.7 0-1.8-.8-2.9-.8-1.5 0-2.9.9-3.7 2.2-1.6 2.8-.4 6.9 1.1 9.1.7 1.1 1.5 2.3 2.6 2.2 1-.1 1.4-.7 2.7-.7s1.7.7 2.8.7c1.2 0 1.9-1.1 2.6-2.2.8-1.2 1.1-2.4 1.1-2.4s-2.5-1-2.5-4zm-2.2-6.4c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3z"/>
+          </svg>
+
           App Store
         </a>
       </div>
-      <p class="ra-hero-note">Free to download · Optional subscription to remove ads</p>
+
+      <p class="ra-hero-note">
+        Free to download · Optional subscription to remove ads
+      </p>
     </section>
 
     <section class="ra-section ra-container" id="features">
       <div class="ra-section-head">
         <span class="ra-kicker">Made for your backlog</span>
         <h2>More than a list of unlocked achievements.</h2>
-        <p>Browse your activity, keep track of goals and find new ways to enjoy the games you already love.</p>
+        <p>
+          Browse your activity, keep track of goals and find new ways to enjoy
+          the games you already love.
+        </p>
       </div>
+
       <div class="ra-feature-grid">
+
         <article class="ra-feature">
           <h3>Track your progress</h3>
-          <p>Review achievement progress, special challenges, missables and completion details in one place.</p>
+          <p>
+            Review achievement progress, special challenges, missables and
+            completion details in one place.
+          </p>
         </article>
+
         <article class="ra-feature">
           <h3>Compare players</h3>
-          <p>Check player statistics, compare progress in Versus mode and keep up with leaderboards.</p>
+          <p>
+            Check player statistics, compare progress in Versus mode and keep
+            up with leaderboards.
+          </p>
         </article>
+
         <article class="ra-feature">
           <h3>Discover what's new</h3>
-          <p>Explore consoles, new releases, Achievement of the Week, Achievement of the Month and RA Roulette.</p>
+          <p>
+            Explore consoles, new releases, Achievement of the Week,
+            Achievement of the Month and RA Roulette.
+          </p>
         </article>
+
         <article class="ra-feature">
           <h3>Stay connected</h3>
-          <p>Follow players, browse recent activity, read achievement comments and revisit event history.</p>
+          <p>
+            Follow players, browse recent activity, read achievement comments
+            and revisit event history.
+          </p>
         </article>
+
         <article class="ra-feature">
           <h3>Useful game tools</h3>
-          <p>Look up game hashes, access patch downloads, manage favorites and share detailed views.</p>
+          <p>
+            Look up game hashes, access patch downloads, manage favorites and
+            share detailed views.
+          </p>
         </article>
+
         <article class="ra-feature">
           <h3>Use it your way</h3>
-          <p>Choose a customizable interface and browse the app in 46 languages.</p>
+          <p>
+            Choose a customizable interface and browse the app in 46 languages.
+          </p>
         </article>
+
       </div>
     </section>
 
     <section class="ra-section ra-container" id="faq">
       <div class="ra-faq">
+
         <div class="ra-faq-intro">
           <span class="ra-kicker">Good to know</span>
           <h2>Questions, answered.</h2>
-          <p>A few things that can help you get started with RetroAchievements and the companion app.</p>
-          <div class="ra-disclaimer"><strong>Independent project.</strong> This app is not affiliated with or endorsed by RetroAchievements.org. It uses data made available through the service's public API.</div>
+          <p>
+            A few things that can help you get started with RetroAchievements
+            and the companion app.
+          </p>
+
+          <div class="ra-disclaimer">
+            <strong>Independent project.</strong>
+            This app is not affiliated with or endorsed by RetroAchievements.org.
+            It uses data made available through the service's public API.
+          </div>
         </div>
+
         <div class="ra-faq-list">
+
           <details>
             <summary>Do I need a RetroAchievements account?</summary>
-            <p>Yes. You need a free account on <a class="ra-text-link" href="https://retroachievements.org/" target="_blank" rel="noopener noreferrer">RetroAchievements.org</a> to use the service and its features.</p>
+            <p>
+              Yes. You need a free account on
+              <a
+                class="ra-text-link"
+                href="https://retroachievements.org/"
+                target="_blank"
+                rel="noopener noreferrer">RetroAchievements.org</a>
+              to use the service and its features.
+            </p>
           </details>
+
           <details>
             <summary>Does the app unlock achievements while I play?</summary>
-            <p>No. Achievement unlocking takes place through a compatible emulator connected to your RetroAchievements account. This app is a companion for browsing your profile, progress and community activity.</p>
+            <p>
+              No. Achievement unlocking takes place through a compatible
+              emulator connected to your RetroAchievements account. This app
+              is a companion for browsing your profile, progress and community
+              activity.
+            </p>
           </details>
+
           <details>
             <summary>How do I enable RetroAchievements in an emulator?</summary>
             <ul>
@@ -275,70 +806,208 @@
               <li>Restart the emulator if the settings require it.</li>
             </ul>
           </details>
+
           <details>
             <summary>What is Hardcore mode?</summary>
-            <p>Hardcore mode is the stricter way to earn achievements. It disables features such as save states, rewind and cheats while playing, and enables Hardcore points and leaderboard participation where supported.</p>
+            <p>
+              Hardcore mode is the stricter way to earn achievements. It
+              disables features such as save states, rewind and cheats while
+              playing, and enables Hardcore points and leaderboard
+              participation where supported.
+            </p>
           </details>
+
           <details>
             <summary>Why are my points or achievements not showing?</summary>
-            <p>Check that your emulator is connected to the correct account, Hardcore mode is enabled when required, the game is recognized correctly and your connection is working. Also make sure your emulator is up to date.</p>
+            <p>
+              Check that your emulator is connected to the correct account,
+              Hardcore mode is enabled when required, the game is recognized
+              correctly and your connection is working. Also make sure your
+              emulator is up to date.
+            </p>
           </details>
+
           <details>
             <summary>Is the app free?</summary>
-            <p>The app is free to download and includes advertising. An optional subscription is available to remove ads. Check the store listing for the current offer and terms.</p>
+            <p>
+              The app is free to download and includes advertising. An
+              optional subscription is available to remove ads. Check the
+              store listing for the current offer and terms.
+            </p>
           </details>
+
           <details>
             <summary>Where can I read the privacy information?</summary>
-            <p>The app uses data from the public RetroAchievements API. Read the <a class="ra-text-link" href="https://retroachievements.org/terms" target="_blank" rel="noopener noreferrer">RetroAchievements service terms and privacy information</a>, and the app's applicable store disclosures.</p>
+            <p>
+              The app's privacy policy is available in the
+              <a class="ra-text-link" href="#privacy">Privacy section on this page</a>.
+              It is separate from the privacy practices of RetroAchievements.org.
+              For information about the service and data provided through its
+              public API, read the
+              <a
+                class="ra-text-link"
+                href="https://retroachievements.org/terms"
+                target="_blank"
+                rel="noopener noreferrer">RetroAchievements.org privacy policy and terms</a>.
+            </p>
           </details>
+
         </div>
       </div>
+    </section>
+
+    <!-- App privacy policy: separate from RetroAchievements.org -->
+    <section class="ra-section ra-container" id="privacy">
+
+      <div class="ra-section-head">
+        <span class="ra-kicker">Your information matters</span>
+        <h2>App privacy policy.</h2>
+        <p>
+          This policy is independent of the privacy
+          policy and terms governing the RetroAchievements.org service.
+        </p>
+      </div>
+
+      <div class="ra-privacy-grid">
+
+        <article class="ra-privacy-card">
+          <span class="ra-privacy-number">01</span>
+          <div>
+            <h3>Use of RetroAchievements data</h3>
+            <p>
+              This app is not directly affiliated with RetroAchievements.org.
+              It uses information made available through the service's public
+              API and, in that context, users should also review the service's
+              own privacy policy.
+            </p>
+          </div>
+        </article>
+
+        <article class="ra-privacy-card">
+          <span class="ra-privacy-number">02</span>
+          <div>
+            <h3>Data collection</h3>
+            <p>
+              The app does not collect data additional to the information
+              provided by RetroAchievements.org through its public API.
+            </p>
+          </div>
+        </article>
+
+        <article class="ra-privacy-card">
+          <span class="ra-privacy-number">03</span>
+          <div>
+            <h3>Data sharing and sale</h3>
+            <p>
+              The app does not sell or share user data with third parties.
+            </p>
+          </div>
+        </article>
+
+        <article class="ra-privacy-card">
+          <span class="ra-privacy-number">04</span>
+          <div>
+            <h3>Policy updates</h3>
+            <p>
+              This policy may be updated periodically. Users will be informed
+              of significant changes to the way their data is handled.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="ra-privacy-note">
+        <p>
+          <strong>About the RetroAchievements.org service:</strong>
+          The service has its own privacy policy and terms, which are separate
+          from this app policy.
+        </p>
+
+        <p>
+          <a
+            href="https://retroachievements.org/terms"
+            target="_blank"
+            rel="noopener noreferrer">
+            Read the RetroAchievements.org privacy policy and terms ↗
+          </a>
+        </p>
+      </div>
+
     </section>
 
     <section class="ra-section ra-container" id="support">
       <div class="ra-section-head">
         <span class="ra-kicker">Need a hand?</span>
         <h2>Support for the app.</h2>
-        <p>For issues with this mobile app, contact the developer. For account, achievement or service-related questions, use the official RetroAchievements community channels.</p>
+        <p>
+          For issues with this mobile app, contact the developer. For account,
+          achievement or service-related questions, use the official
+          RetroAchievements community channels.
+        </p>
       </div>
+
       <div class="ra-support-grid">
+
         <article class="ra-support-card">
           <h3>App support</h3>
           <p>Questions, bug reports or feedback about the App.</p>
-          <a href="mailto:retroachievements@akissame.com.co">retroachievements@akissame.com.co ↗</a>
+          <a href="mailto:retroachievements@akissame.com.co">
+            retroachievements@akissame.com.co ↗
+          </a>
         </article>
+
         <article class="ra-support-card">
           <h3>RetroAchievements community</h3>
-          <p>For service accounts, achievement rules, game sets and community discussions.</p>
-          <a href="https://retroachievements.org/" target="_blank" rel="noopener noreferrer">Visit RetroAchievements.org ↗</a>
+          <p>
+            For service accounts, achievement rules, game sets and community
+            discussions.
+          </p>
+          <a
+            href="https://retroachievements.org/"
+            target="_blank"
+            rel="noopener noreferrer">
+            Visit RetroAchievements.org ↗
+          </a>
         </article>
+
       </div>
     </section>
+
   </main>
 
   <footer class="ra-footer">
     <div class="ra-container ra-footer-inner">
-      <div>© 2023-<span id="ra-year">2026</span> · Akissame. All rights reserved.</div>
+      <div>
+        © 2023-<span id="ra-year">2026</span> · Akissame. All rights reserved.
+      </div>
+
       <div class="ra-footer-links">
-        <a href="https://retroachievements.org/terms">App privacy policy</a>
+        <a href="#privacy">App privacy</a>
       </div>
     </div>
   </footer>
+
 </div>
+
 <script>
   const menuButton = document.querySelector('.ra-menu-button');
   const navigation = document.querySelector('#ra-navigation');
+
   menuButton?.addEventListener('click', () => {
     const isOpen = navigation.classList.toggle('is-open');
     menuButton.setAttribute('aria-expanded', String(isOpen));
   });
+
   navigation?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       navigation.classList.remove('is-open');
       menuButton?.setAttribute('aria-expanded', 'false');
     });
   });
+
   document.querySelector('#ra-year').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
